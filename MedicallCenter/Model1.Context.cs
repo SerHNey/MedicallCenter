@@ -15,10 +15,17 @@ namespace MedicallCenter
     
     public partial class EntitiesMedical : DbContext
     {
+        public static EntitiesMedical _context;
         public EntitiesMedical()
             : base("name=EntitiesMedical")
         {
         }
+
+        public static EntitiesMedical GetEntities()
+        {
+            return _context ?? (_context = new EntitiesMedical());
+        }
+
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

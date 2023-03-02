@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MedicallCenter;
+using MedicallCenter.Clasees;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,6 +27,8 @@ namespace MedicalCenter.Pages
             InitializeComponent();
         }
 
+        List<Worker> workers = new List<Worker>();
+
         private void cbShowPassword_Click(object sender, RoutedEventArgs e)
         {
             if (cbShowPassword.IsChecked == true)
@@ -40,6 +44,30 @@ namespace MedicalCenter.Pages
                 tboxPassword.Visibility = Visibility.Hidden;
             }
             
+        }
+
+        private void bLogin_Click(object sender, RoutedEventArgs e)
+        {
+            string login = tbLogin.Text;
+            string password = pboxPassword.Password;
+            bool isAuth = false;
+            workers = CurrentData.db.Worker.ToList();
+            foreach(Worker worker in workers)
+            {
+                if (worker.login == login)
+                {
+                    if (worker.password == password)
+                    {
+                        CurrentData.worker = worker;
+                        Manager.frame.Navigate(new Page_Home());
+                        isAuth= true;
+                        break;
+                    }
+                }
+            }
+            if (!isAuth)
+                MessageBox.Show("Логин или пароль неверен");
+
         }
     }
 }

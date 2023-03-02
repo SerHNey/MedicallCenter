@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MedicallCenter.Clasees;
 
 namespace MedicallCenter
 {
@@ -27,6 +28,15 @@ namespace MedicallCenter
             InitializeComponent();
             Manager.frame = MainFrame;
             Manager.frame.Navigate(new Page_Authorization());
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            CurrentData.db = new EntitiesMedical();
+            CurrentData.results = CurrentData.db.Result.ToList();
+            CurrentData.users = CurrentData.db.User.ToList();
+            CurrentData.services = CurrentData.db.Service.ToList();
+            CurrentData.workers = CurrentData.db.Worker.ToList();
         }
     }
 }
