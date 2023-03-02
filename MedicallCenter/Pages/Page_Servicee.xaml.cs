@@ -22,8 +22,10 @@ namespace MedicalCenter.Pages
     /// </summary>
     public partial class Page_Servicee : Page
     {
+        private Service currentServis = new Service();
         public Page_Servicee()
         {
+
             InitializeComponent();
             DataGridService.ItemsSource = EntitiesMedical.GetEntities().Service.ToList();
         }
@@ -51,5 +53,15 @@ namespace MedicalCenter.Pages
                 
             }
         }
+
+        private void dntAddService_Click(object sender, RoutedEventArgs e)
+        {
+            currentServis.service1 = tbNameService.Text;
+            currentServis.price = Convert.ToDouble(tbPriceService.Text);
+            EntitiesMedical.GetEntities().Service.Add(currentServis);
+            EntitiesMedical.GetEntities().SaveChanges();
+            DataGridService.ItemsSource = EntitiesMedical.GetEntities().Service.ToList();
+        }
+        
     }
 }
