@@ -25,7 +25,6 @@ namespace MedicalCenter.Pages
         private Service currentServis = new Service();
         public Page_Servicee()
         {
-
             InitializeComponent();
             DataGridService.ItemsSource = EntitiesMedical.GetEntities().Service.ToList();
         }
@@ -56,12 +55,39 @@ namespace MedicalCenter.Pages
 
         private void dntAddService_Click(object sender, RoutedEventArgs e)
         {
-            currentServis.service1 = tbNameService.Text;
-            currentServis.price = Convert.ToDouble(tbPriceService.Text);
+            GetInfoNewService();
+            SaveChang();
+            tbNameService.Text = null;
+            tbPriceService.Text = null;
+        }
+
+        private void btnEditService_Click(object sender, RoutedEventArgs e)
+        {
+            bool save = false;
+            bntDeleteService.Content = "Сохранить";
+            if (DataGridService.SelectedItem != null)
+            {
+                OutInfoEditService();
+            }
+        }
+        private void SaveChang()
+        {
             EntitiesMedical.GetEntities().Service.Add(currentServis);
             EntitiesMedical.GetEntities().SaveChanges();
             DataGridService.ItemsSource = EntitiesMedical.GetEntities().Service.ToList();
         }
-        
+        // Заполяент объёект
+        private void GetInfoNewService()
+        {
+            currentServis.service1 = tbNameService.Text;
+            currentServis.price = Convert.ToDouble(tbPriceService.Text);
+        }
+        // Закидывает старые данные в поля для изменения, выбранного элемента
+        private void OutInfoEditService()
+        {
+            currentServis = DataGridService.SelectedItem as Service;
+            tbNameService.Text = currentServis.service1;
+            tbPriceService.Text = Convert.ToString(currentServis.price);
+        }
     }
 }
