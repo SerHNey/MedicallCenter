@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MedicalCenter.Pages;
 using MedicallCenter;
+using MedicallCenter.Clasees;
 
 namespace MedicalCenter.Pages
 {
@@ -51,12 +52,17 @@ namespace MedicalCenter.Pages
         private void GetInfoWorker(Worker worker)
         {
             tbName.Text = worker.name;
-            if (worker.type == 1)
-                tbRole.Text = "Администратор";
-            if (worker.type == 2)
-                tbRole.Text = "Пациент";
-            if (worker.type == 3)
-                tbRole.Text = "Лаборант";
+            for(int i = 0; i < CurrentData.db.Type.Count();)
+            {
+                if(worker.type == i)
+                {
+                    List<MedicallCenter.Type> types= CurrentData.db.Type.ToList();
+                    tbRole.Text = types[i-1].role;
+                    break;
+                }
+                i++;
+            }
+
         }
     }
 }

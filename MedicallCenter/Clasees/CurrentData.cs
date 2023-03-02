@@ -13,6 +13,7 @@ namespace MedicallCenter.Clasees
         public static List<Service> services = new List<Service>();
         public static List<User> users = new List<User>();
         public static List<Worker> workers = new List<Worker>();
+        public static List<Type> types = new List<Type>();
         public static Worker worker;
     }
 }
