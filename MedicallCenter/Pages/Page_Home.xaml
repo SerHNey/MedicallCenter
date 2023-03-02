@@ -42,7 +42,7 @@
                         x:Name="button_result"
                     Click="button_result_Click"/>
         </StackPanel>
-        <Image x:Name="avatar" Grid.Column="1" Height="200" Width="200"/>
+        <Image x:Name="avatar" Grid.Column="1" Height="200" Width="200" Source="/Pages/aqq.jpg"/>
         <StackPanel Orientation="Vertical" Grid.Column="2" VerticalAlignment="Center">
             <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
                 <TextBlock Text="Имя: " Width="35" TextAlignment="Right"/>

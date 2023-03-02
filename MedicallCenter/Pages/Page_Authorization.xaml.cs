@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -22,9 +23,13 @@ namespace MedicalCenter.Pages
     /// </summary>
     public partial class Page_Authorization : Page
     {
+        CaptchaWindow captchaWindow;
+        private bool isFailedToSignIn;
+        private List<SignInAttempt> signInAttempts = new List<SignInAttempt>();
         public Page_Authorization()
         {
             InitializeComponent();
+            //captchaWindow = new CaptchaWindow();
         }
 
         List<Worker> workers = new List<Worker>();
@@ -63,8 +68,28 @@ namespace MedicalCenter.Pages
                 }
             }
             if (!isAuth)
+            {
                 MessageBox.Show("Логин или пароль неверен");
+                signInAttempts.Add(new SignInAttempt(tbLogin.Text, DateTime.Now, false));
+                if (captchaWindow.IsPassedCaptcha)
+                {
+                    SignInButtonBlock();
+                }
+                else if (isFailedToSignIn)
+                {
+                    captchaWindow.Show();
+                }
+                isFailedToSignIn = true;
+            }
 
+
+        }
+        public async void SignInButtonBlock()
+        {
+            bLogin.IsEnabled = false;
+            await Task.Run(() => Thread.Sleep(10000));
+            bLogin.IsEnabled = true;
+            captchaWindow.IsPassedCaptcha = false;
         }
     }
 }
