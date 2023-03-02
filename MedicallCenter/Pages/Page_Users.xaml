@@ -13,6 +13,15 @@
             <RowDefinition Height="1.3*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+        <DataGrid x:Name="DataGridUser" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Имя" Binding="{Binding name}" Width="*"/>
+                <DataGridTextColumn Header="Логин" Binding="{Binding login}" Width="*"/>
+                <DataGridTextColumn Header="Пароль" Binding="{Binding password}" Width="*"/>
+                <DataGridTextColumn Header="Пол" Binding="{Binding pol}" Width="*"/>
+                <DataGridTextColumn Header="Возраст" Binding="{Binding age}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -20,6 +29,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
+            
             <StackPanel Grid.Column="0" Orientation="Vertical" Margin="10 0 10 0">
                 <TextBlock Text="Имя" 
                            FontSize="24"/>
@@ -44,7 +54,9 @@
                         FontSize="20" Margin="0 10 0 0"/>
                 <Button Content="Редактировать" 
                         FontSize="20" Margin="0 10 0 0"/>
-                <Button Content="Удалить" 
+                <Button x:Name="bntDeleteUser" Content="Удалить" Click="bntDeleteUser_Click"
+                        FontSize="20" Margin="0 10 0 0"/>
+                <Button x:Name="btnBack" Content="Вернуться" Click="btnBack_Click"
                         FontSize="20" Margin="0 10 0 0"/>
             </StackPanel>
         </Grid>

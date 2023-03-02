@@ -18,14 +18,14 @@ using System.Windows.Shapes;
 namespace MedicalCenter.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для Users.xaml
+    /// Логика взаимодействия для Result.xaml
     /// </summary>
-    public partial class Page_Users : Page
+    public partial class Page_Result : Page
     {
-        public Page_Users()
+        public Page_Result()
         {
             InitializeComponent();
-            DataGridUser.ItemsSource = EntitiesMedical.GetEntities().User.ToList();
+            DataGridResult.ItemsSource = EntitiesMedical.GetEntities().Result.ToList();
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -33,17 +33,17 @@ namespace MedicalCenter.Pages
             Manager.frame.Navigate(new Page_Home(CurrentData.worker));
         }
 
-        private void bntDeleteUser_Click(object sender, RoutedEventArgs e)
+        private void btnDeleteResult_Click(object sender, RoutedEventArgs e)
         {
-            var userForDelete = DataGridUser.SelectedItems.Cast<User>().ToList();
-            if(MessageBox.Show($"Вы точно хотите удалить следующие {userForDelete} записи","Внимание",
+            var resultForDelete = DataGridResult.SelectedItems.Cast<Result>().ToList();
+            if(MessageBox.Show($"Вы точно хотите удалить следующие {resultForDelete} записи","Внимание",
                 MessageBoxButton.YesNo, MessageBoxImage.Question)== MessageBoxResult.Yes)
             {
                 try
                 {
-                    EntitiesMedical.GetEntities().User.RemoveRange(userForDelete);
+                    EntitiesMedical.GetEntities().Result.RemoveRange(resultForDelete);
                     EntitiesMedical.GetEntities().SaveChanges();
-                    DataGridUser.ItemsSource = EntitiesMedical.GetEntities().User.ToList();
+                    DataGridResult.ItemsSource = EntitiesMedical.GetEntities().Result.ToList();
                 }catch(Exception ex)
                 {
                     MessageBox.Show(ex.ToString());

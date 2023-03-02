@@ -52,10 +52,6 @@
                 <TextBlock Text="Роль: " Width="35" TextAlignment="Right"/>
                 <TextBlock x:Name="tbRole" Text="Администратор"/>
             </StackPanel>
-
-
         </StackPanel>
-        
     </Grid>
-    
 </Page>

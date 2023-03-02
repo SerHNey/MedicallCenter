@@ -1,4 +1,7 @@
-﻿using System;
+﻿using MedicalCenter.Pages;
+using MedicallCenter;
+using MedicallCenter.Clasees;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,4 +14,6 @@ namespace MedicalCenter
     {
         public static Frame frame { get; set; }
     }
+
+    
 }
