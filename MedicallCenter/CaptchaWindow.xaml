@@ -23,7 +23,7 @@
                 <Button Content="Отправить" Width="140px" Margin="30 10" FontSize="24px" HorizontalAlignment="Left" Background="White" Click="SendButton_Click"/>
                 <Button Name="btnRepeat" Width="40px" Margin="30 10" FontSize="24px" HorizontalAlignment="Right" Click="RepeatButton_click">
                     <Button.Background>
-                        <ImageBrush ImageSource="Resources/img/Repeat-PNG-Picture.png" Stretch="Uniform"/>
+                        <ImageBrush  Stretch="Uniform"/>
                     </Button.Background>
                 </Button>
             </Grid>

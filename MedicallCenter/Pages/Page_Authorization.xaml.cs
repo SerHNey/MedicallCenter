@@ -29,7 +29,7 @@ namespace MedicalCenter.Pages
         public Page_Authorization()
         {
             InitializeComponent();
-            //captchaWindow = new CaptchaWindow();
+            captchaWindow = new CaptchaWindow();
         }
 
         List<Worker> workers = new List<Worker>();
