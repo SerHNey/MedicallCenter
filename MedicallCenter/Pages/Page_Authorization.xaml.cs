@@ -54,15 +54,12 @@ namespace MedicalCenter.Pages
             workers = CurrentData.db.Worker.ToList();
             foreach(Worker worker in workers)
             {
-                if (worker.login == login)
+                if (worker.login == login && worker.password == password)
                 {
-                    if (worker.password == password)
-                    {
                         CurrentData.worker = worker;
-                        Manager.frame.Navigate(new Page_Home());
+                        Manager.frame.Navigate(new Page_Home(worker));
                         isAuth= true;
                         break;
-                    }
                 }
             }
             if (!isAuth)

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MedicalCenter.Pages;
+using MedicallCenter;
 
 namespace MedicalCenter.Pages
 {
@@ -21,9 +22,10 @@ namespace MedicalCenter.Pages
     /// </summary>
     public partial class Page_Home : Page
     {
-        public Page_Home()
+        public Page_Home(Worker worker)
         {
             InitializeComponent();
+            GetInfoWorker(worker);
         }
 
         private void button_service_Click(object sender, RoutedEventArgs e)
@@ -44,6 +46,17 @@ namespace MedicalCenter.Pages
         private void button_result_Click(object sender, RoutedEventArgs e)
         {
             Manager.frame.Navigate(new Page_Result());
+        }
+
+        private void GetInfoWorker(Worker worker)
+        {
+            tbName.Text = worker.name;
+            if (worker.type == 1)
+                tbRole.Text = "Администратор";
+            if (worker.type == 2)
+                tbRole.Text = "Пациент";
+            if (worker.type == 3)
+                tbRole.Text = "Лаборант";
         }
     }
 }
