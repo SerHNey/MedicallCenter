@@ -43,9 +43,8 @@ namespace MedicalCenter.Pages
             {
                 try
                 {
-                    EntitiesMedical.GetEntities().Service.RemoveRange(serviceForDelete);
-                    EntitiesMedical.GetEntities().SaveChanges();
-                    DataGridService.ItemsSource = EntitiesMedical.GetEntities().Service.ToList();
+                    CurrentData.db.Service.RemoveRange(serviceForDelete);
+                    SaveChang();
                     MessageBox.Show("Записи успешно удалены");
                 }
                 catch (Exception ex)
@@ -60,7 +59,7 @@ namespace MedicalCenter.Pages
         {
             if (GetData())
             {
-                EntitiesMedical.GetEntities().Service.Add(currentServis);
+                CurrentData.db.Service.Add(currentServis);
                 SaveChang();
                 MessageBox.Show("Запись успешно добавлена");
                 tbNameService.Text = null;
@@ -70,8 +69,8 @@ namespace MedicalCenter.Pages
 
         private void SaveChang()
         {
-            EntitiesMedical.GetEntities().SaveChanges();
-            DataGridService.ItemsSource = EntitiesMedical.GetEntities().Service.ToList();
+            CurrentData.db.SaveChanges();
+            DataGridService.ItemsSource = CurrentData.db.Service.ToList();
         }
 
         private bool GetData()
@@ -116,7 +115,7 @@ namespace MedicalCenter.Pages
         {
             if (GetData())
             {
-                EntitiesMedical.GetEntities().Service.AddOrUpdate(currentServis);
+                CurrentData.db.Service.AddOrUpdate(currentServis);
                 SaveChang();
                 tbNameService.Text = null;
                 tbPriceService.Text = null;
