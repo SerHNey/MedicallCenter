@@ -55,7 +55,7 @@ namespace MedicalCenter.Pages
             if (worker.type == 1)
                 tbRole.Text = "Администратор";
             if (worker.type == 2)
-                tbRole.Text = "Пациент";
+                tbRole.Text = "Пользователь";
             if (worker.type == 3)
                 tbRole.Text = "Лаборант";
         }

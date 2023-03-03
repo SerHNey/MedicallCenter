@@ -2,6 +2,7 @@
 using MedicallCenter.Clasees;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,7 +27,7 @@ namespace MedicalCenter.Pages
         public Page_Servicee()
         {
             InitializeComponent();
-            DataGridService.ItemsSource = EntitiesMedical.GetEntities().Service.ToList();
+            SaveChang();
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -45,42 +46,55 @@ namespace MedicalCenter.Pages
                     EntitiesMedical.GetEntities().Service.RemoveRange(serviceForDelete);
                     EntitiesMedical.GetEntities().SaveChanges();
                     DataGridService.ItemsSource = EntitiesMedical.GetEntities().Service.ToList();
-                }catch(Exception ex)
+                    MessageBox.Show("Записи успешно удалены");
+                }
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.ToString());
                 }
-                
+
             }
         }
 
         private void dntAddService_Click(object sender, RoutedEventArgs e)
         {
-            GetInfoNewService();
-            SaveChang();
-            tbNameService.Text = null;
-            tbPriceService.Text = null;
+            if (GetData())
+            {
+                EntitiesMedical.GetEntities().Service.Add(currentServis);
+                SaveChang();
+                MessageBox.Show("Запись успешно добавлена");
+                tbNameService.Text = null;
+                tbPriceService.Text = null;
+            }
+
         }
 
-        private void btnEditService_Click(object sender, RoutedEventArgs e)
-        {
-            bool save = false;
-            bntDeleteService.Content = "Сохранить";
-            if (DataGridService.SelectedItem != null)
-            {
-                OutInfoEditService();
-            }
-        }
         private void SaveChang()
         {
-            EntitiesMedical.GetEntities().Service.Add(currentServis);
             EntitiesMedical.GetEntities().SaveChanges();
             DataGridService.ItemsSource = EntitiesMedical.GetEntities().Service.ToList();
         }
-        // Заполяент объёект
-        private void GetInfoNewService()
+
+        private bool GetData()
         {
-            currentServis.service1 = tbNameService.Text;
-            currentServis.price = Convert.ToDouble(tbPriceService.Text);
+            if (tbNameService.Text != "")
+                if (tbPriceService.Text != "")
+                {
+
+                    currentServis.service1 = tbNameService.Text;
+                    try
+                    {
+                        currentServis.price = Convert.ToDouble(tbPriceService.Text);
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        currentServis.price = 0;
+                        MessageBox.Show($"Цена содержить недопустимые символы или находится без значения");
+                        return false;
+                    }
+                }
+            return false;
         }
         // Закидывает старые данные в поля для изменения, выбранного элемента
         private void OutInfoEditService()
@@ -88,6 +102,30 @@ namespace MedicalCenter.Pages
             currentServis = DataGridService.SelectedItem as Service;
             tbNameService.Text = currentServis.service1;
             tbPriceService.Text = Convert.ToString(currentServis.price);
+        }
+
+        private void btnEditService_Click(object sender, RoutedEventArgs e)
+        {
+            if (DataGridService.SelectedItem != null)
+            {
+                OutInfoEditService();
+                btnEditSecondService.Visibility = Visibility.Visible;
+                dntAddService.IsEnabled = IsEnabled.Equals(false);
+            }
+        }
+
+        private void btnEditSecondService_Click(object sender, RoutedEventArgs e)
+        {
+            if (GetData())
+            {
+                EntitiesMedical.GetEntities().Service.AddOrUpdate(currentServis);
+                SaveChang();
+                tbNameService.Text = null;
+                tbPriceService.Text = null;
+                MessageBox.Show("Запись успешно изменена");
+                btnEditSecondService.Visibility = Visibility.Hidden;
+                dntAddService.IsEnabled = IsEnabled.Equals(true);
+            }
         }
     }
 }
