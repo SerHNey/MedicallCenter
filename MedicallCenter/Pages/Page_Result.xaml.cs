@@ -26,6 +26,9 @@ namespace MedicalCenter.Pages
         {
             InitializeComponent();
             DataGridResult.ItemsSource = EntitiesMedical.GetEntities().Result.ToList();
+            ComboUser.ItemsSource = CurrentData.db.User.ToList();
+            ComboWorker.ItemsSource= CurrentData.db.Worker.ToList();
+            ComboService.ItemsSource= CurrentData.db.Service.ToList();
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -49,6 +52,16 @@ namespace MedicalCenter.Pages
                     MessageBox.Show(ex.ToString());
                 }
             }
+        }
+
+        private void btnEditResult_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnEditSecodnResult_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

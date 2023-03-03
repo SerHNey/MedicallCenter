@@ -2,6 +2,7 @@
 using MedicallCenter.Clasees;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,10 +46,11 @@ namespace MedicalCenter.Pages
             {
                 try
                 {
-                    EntitiesMedical.GetEntities().Worker.RemoveRange(workersForDelete);
-                    EntitiesMedical.GetEntities().SaveChanges();
-                    DataGridWorkers.ItemsSource = EntitiesMedical.GetEntities().Worker.ToList();
-                }catch(Exception ex)
+                    CurrentData.db.Worker.RemoveRange(workersForDelete);
+                    CurrentData.db.SaveChanges();
+                    DataGridWorkers.ItemsSource = CurrentData.db.Worker.ToList();
+                }
+                catch(Exception ex)
                 {
                     MessageBox.Show(ex.ToString());
                 }
@@ -67,16 +69,40 @@ namespace MedicalCenter.Pages
 
         private void btnEditWorker_Click(object sender, RoutedEventArgs e)
         {
+            if(DataGridWorkers.SelectedItem != null)
+            {
+
+                curerentworker = DataGridWorkers.SelectedItem as Worker;
+                tbNameWorker.Text = curerentworker.name;
+                tbLoginWorker.Text = curerentworker.login;
+                tbPasswordWorker.Text = curerentworker.password;
+                tbIpWorker.Text = curerentworker.ip;
+                tbLasneterWorker.Text = curerentworker.lastenter;
+                /* Хер знает как засунуть в ComboBox                               Доделать Редактирование
+                 * 
+                ComboDolgnost.SelectedItem = CurrentData.db.Type.ToList().Where(x => x.role == ComboDolgnost.Text).FirstOrDefault().id;a
+                curerentworker.type = CurrentData.db.Type.ToList().Where(x => x.role == ComboDolgnost.Text).FirstOrDefault().id;
+                */
+
+                btnEditSecondWorker.Visibility = Visibility.Visible;
+            }
 
         }
 
         private void btnEditSecondWorker_Click(object sender, RoutedEventArgs e)
         {
+            if(GetData())
+            {
+                CurrentData.db.Worker.AddOrUpdate(curerentworker);
+                SaveChang();
 
+                MessageBox.Show("Запись успешно изменена");
+                btnEditSecondWorker.Visibility = Visibility.Hidden;
+                btnEditWorker.IsEnabled = IsEnabled.Equals(true);
+            }
         }
         private void SaveChang()
         {
-            
             CurrentData.db.SaveChanges();
             DataGridWorkers.ItemsSource = CurrentData.db.Worker.ToList();
         }
