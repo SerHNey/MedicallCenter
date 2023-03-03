@@ -20,10 +20,10 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <StackPanel Orientation="Horizontal" Grid.Column="1">
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Margin="20 0">
             <StackPanel Orientation="Vertical" Width="200">
                 
-                <TextBlock Text="Услуга" 
+                <Label Content="Услуга" 
                            FontSize="24"/>
                 <TextBox x:Name="tbNameService" FontSize="22"/>
                 <TextBlock Text="Цена" 

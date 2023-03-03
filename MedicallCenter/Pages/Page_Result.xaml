@@ -36,7 +36,7 @@
                 <TextBlock Text="Работник" 
                            FontSize="24"/>
                 <ComboBox x:Name="ComboWorker" SelectedItem="{Binding Worker}" FontSize="22" DisplayMemberPath="name"/>
-                <TextBlock Text="Усуга" 
+                <TextBlock Text="Услуга" 
                            FontSize="24"/>
                 <ComboBox x:Name="ComboService" SelectedItem="{Binding Service}" FontSize="22" DisplayMemberPath="service1"/>
             </StackPanel>

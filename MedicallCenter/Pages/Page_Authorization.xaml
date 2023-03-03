@@ -17,7 +17,9 @@
             <TextBox Name="tbLogin"  Padding="2px" FontSize="18px" Height="32px" MaxLength="24"/>
             <TextBlock TextAlignment="Left" Margin="0, 3px" FontSize="18px" Text="Пароль"/>
             <Grid>
-                <PasswordBox Name="pboxPassword" Padding="2px" FontSize="18px" Height="32px" MaxLength="30"/>
+                <Border CornerRadius="15" BorderBrush="#045C70" SnapsToDevicePixels="True">
+                    <PasswordBox Name="pboxPassword" Padding="2px" FontSize="18px" Height="32px" MaxLength="30"/>
+                </Border>
                 <TextBox Name="tboxPassword" Padding="2px" FontSize="18px" Height="32px" Visibility="Hidden" MaxLength="30"/>
             </Grid>
             <WrapPanel>
