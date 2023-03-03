@@ -15,5 +15,6 @@ namespace MedicalCenter
         public static Frame frame { get; set; }
     }
 
-    
+
+
 }

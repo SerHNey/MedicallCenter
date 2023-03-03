@@ -22,12 +22,14 @@ namespace MedicalCenter.Pages
     /// </summary>
     public partial class Page_Workers : Page
     {
+        private Worker curerentworker = new Worker();
         public Page_Workers()
         {
             InitializeComponent();
 
-            DataGridWorkers.ItemsSource = EntitiesMedical.GetEntities().Worker.ToList();
-            
+            DataGridWorkers.ItemsSource = CurrentData.db.Worker.ToList();
+            ComboDolgnost.ItemsSource = CurrentData.db.Type.ToList();
+            ComboService.ItemsSource= CurrentData.db.Service.ToList();
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -51,6 +53,62 @@ namespace MedicalCenter.Pages
                     MessageBox.Show(ex.ToString());
                 }
             }
+        }
+
+        private void btnAddWorker_Click(object sender, RoutedEventArgs e)
+        {
+            if (GetData())
+            {
+                CurrentData.db.Worker.Add(curerentworker);
+                SaveChang();
+                MessageBox.Show("Добавлено");
+            }
+        }
+
+        private void btnEditWorker_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnEditSecondWorker_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void SaveChang()
+        {
+            
+            CurrentData.db.SaveChanges();
+            DataGridWorkers.ItemsSource = CurrentData.db.Worker.ToList();
+        }
+        private bool GetData()
+        {
+            StringBuilder stringBuilder= new StringBuilder();
+            if(tbNameWorker.Text.Length < 0) 
+                stringBuilder.Append("Поле имя: пусто\n");
+            if (tbLoginWorker.Text.Length < 0)
+                stringBuilder.Append("Поле логин: пусто\n");
+            if (tbPasswordWorker.Text.Length < 0)
+                stringBuilder.Append("Поле пароль: пусто\n");
+            if (tbIpWorker.Text.Length < 0)
+                stringBuilder.Append("Поле ip: пусто\n");
+            if (tbLasneterWorker.Text.Length < 0)
+                stringBuilder.Append("Поле время: пусто\n");
+            if (ComboService.SelectedItem == null)
+                stringBuilder.Append("Поле услуги: пусто\n");
+            if (ComboDolgnost.SelectedItem == null)
+                stringBuilder.Append("Поле должность: пусто\n");
+            if(stringBuilder.ToString() == "")
+            {
+                curerentworker.name = tbNameWorker.Text;
+                curerentworker.login = tbLoginWorker.Text;
+                curerentworker.password = tbPasswordWorker.Text;
+                curerentworker.ip = tbIpWorker.Text;
+                curerentworker.lastenter = tbLasneterWorker.Text;
+                curerentworker.services = ComboService.SelectedValue.ToString();
+                curerentworker.type = CurrentData.db.Type.ToList().Where(x => x.role == ComboDolgnost.Text).FirstOrDefault().id;
+                return true;
+            }
+            return false;
         }
     }
 }

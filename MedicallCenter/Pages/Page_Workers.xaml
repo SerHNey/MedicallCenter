@@ -19,9 +19,9 @@
                 <DataGridTextColumn Header="Логин" Binding="{Binding login}" Width="*"/>
                 <DataGridTextColumn Header="Пароль" Binding="{Binding password}" Width="*"/>
                 <DataGridTextColumn Header="ip" Binding="{Binding ip}" Width="*"/>
-                <DataGridTextColumn Header="lastener" Binding="{Binding lastenter}" Width="*" />
+                <DataGridTextColumn Header="Время" Binding="{Binding lastenter}" Width="*" />
                 <DataGridTextColumn Header="Услуги" Binding="{Binding services}" Width="*"/>
-                <DataGridTextColumn Header="Тип" Binding="{Binding Type1.role}" Width="*"/>
+                <DataGridTextColumn Header="Должность" Binding="{Binding Type1.role}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
         <Grid Grid.Row="1">
@@ -34,35 +34,39 @@
             <StackPanel Grid.Column="0" Orientation="Vertical" Margin="10 0 10 0">
                 <TextBlock Text="Имя" 
                            FontSize="24"/>
-                <TextBox FontSize="22"/>
+                <TextBox x:Name="tbNameWorker"  FontSize="22"/>
                 <TextBlock Text="Логин" 
                            FontSize="24"/>
-                <TextBox FontSize="22"/>
+                <TextBox x:Name="tbLoginWorker" FontSize="22"/>
                 <TextBlock Text="Пароль" 
                            FontSize="24"/>
-                <TextBox FontSize="22"/>
+                <TextBox x:Name="tbPasswordWorker" FontSize="22"/>
             </StackPanel>
             <StackPanel Grid.Column="1" Orientation="Vertical" Margin="10 0 10 0">
                 <TextBlock Text="ip" 
                            FontSize="24"/>
-                <TextBox FontSize="22"/>
-                <TextBlock Text="lastener" 
+                <TextBox x:Name="tbIpWorker" FontSize="22"/>
+                <TextBlock Text="Время" 
                            FontSize="24"/>
-                <TextBox FontSize="22"/>
+                <TextBox x:Name="tbLasneterWorker" FontSize="22"/>
             </StackPanel>
             <StackPanel Grid.Column="2" Orientation="Vertical" Margin="10 0 10 0">
+                <TextBlock Text="Услуги" 
+                           FontSize="24"/>
+                <ComboBox x:Name="ComboService" SelectedItem="{Binding Service}" FontSize="22" DisplayMemberPath="service1"/>
                 <TextBlock Text="Должность" 
                            FontSize="24"/>
-                <TextBox FontSize="22"/>
-                <TextBlock Text="Анализатор" 
-                           FontSize="24"/>
-                <TextBox FontSize="22"/>
+                <ComboBox x:Name="ComboDolgnost" SelectedItem="{Binding Type}" FontSize="22" DisplayMemberPath="role"/>
             </StackPanel>
             <StackPanel Grid.Column="3" Orientation="Vertical" Margin="10 0 10 0">
-                <Button Content="Добавить" 
+                <Button x:Name="btnAddWorker" Content="Добавить" Click="btnAddWorker_Click"
                         FontSize="20" Margin="0 10 0 0"/>
-                <Button Content="Редактировать" 
+                <Grid>
+                    <Button x:Name="btnEditWorker" Content="Редактировать" Click="btnEditWorker_Click"
                         FontSize="20" Margin="0 10 0 0"/>
+                    <Button x:Name="btnEditSecondWorker" Content="Сохранить" Visibility="Hidden" Click="btnEditSecondWorker_Click"
+                        FontSize="20" Margin="0 10 0 0"/>
+                </Grid>
                 <Button x:Name="btnDelete" Content="Удалить" Click="btnDelete_Click" 
                         FontSize="20" Margin="0 10 0 0"/>
                 <Button x:Name="btnBack" Content="Вернуться" Click="btnBack_Click"

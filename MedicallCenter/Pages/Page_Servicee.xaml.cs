@@ -66,7 +66,6 @@ namespace MedicalCenter.Pages
                 tbNameService.Text = null;
                 tbPriceService.Text = null;
             }
-
         }
 
         private void SaveChang()
@@ -80,7 +79,6 @@ namespace MedicalCenter.Pages
             if (tbNameService.Text != "")
                 if (tbPriceService.Text != "")
                 {
-
                     currentServis.service1 = tbNameService.Text;
                     try
                     {
