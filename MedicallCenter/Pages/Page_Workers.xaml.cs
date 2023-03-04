@@ -1,5 +1,6 @@
 ﻿using MedicallCenter;
 using MedicallCenter.Clasees;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
@@ -15,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 
 namespace MedicalCenter.Pages
 {
@@ -29,8 +31,8 @@ namespace MedicalCenter.Pages
             InitializeComponent();
 
             DataGridWorkers.ItemsSource = CurrentData.db.Worker.ToList();
+            ComboService.ItemsSource = CurrentData.db.Service.ToList();
             ComboDolgnost.ItemsSource = CurrentData.db.Type.ToList();
-            ComboService.ItemsSource= CurrentData.db.Service.ToList();
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -78,6 +80,8 @@ namespace MedicalCenter.Pages
                 tbPasswordWorker.Text = curerentworker.password;
                 tbIpWorker.Text = curerentworker.ip;
                 tbLasneterWorker.Text = curerentworker.lastenter;
+                JArray json = JArray.Parse(curerentworker.services);
+
                 /* Хер знает как засунуть в ComboBox                               Доделать Редактирование
                  * 
                 ComboDolgnost.SelectedItem = CurrentData.db.Type.ToList().Where(x => x.role == ComboDolgnost.Text).FirstOrDefault().id;a
