@@ -15,8 +15,8 @@
         </Grid.RowDefinitions>
         <DataGrid x:Name="DataGridWorkers" AutoGenerateColumns="False" HorizontalGridLinesBrush="#747474" VerticalGridLinesBrush="#747474" IsReadOnly="True" Style="{DynamicResource DataGridStyle1}">
             <FrameworkElement.Resources>
-                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Black"/>
-                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Green"/>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="LightGray"/>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="#045C70"/>
                 <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}" Color="BLue"/>
             </FrameworkElement.Resources>
             <DataGrid.Columns>
@@ -26,13 +26,13 @@
                             <Setter Property="Background" Value="White"/>
                             <Setter Property="BorderBrush" Value="#0D0D0D"/>
                             <Setter Property="BorderThickness" Value="2"/>
-                            <Setter Property="Foreground" Value="#0D0D0D"/>
+                            <Setter Property="Foreground" Value="Black"/>
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="DataGridColumnHeader">
                                         <Border Background="#0D0D0D" BorderThickness="0">
                                             <Border x:Name="border"
-                              BorderBrush="#0D0D0D"
+                              BorderBrush="#045C70"
                               BorderThickness="2"
                               Background="White"
                               CornerRadius="5 0 0 0">
@@ -51,14 +51,14 @@
                             <Setter Property="Background" Value="#0D0D0D"/>
                             <Setter Property="BorderBrush" Value="White"/>
                             <Setter Property="BorderThickness" Value="2"/>
-                            <Setter Property="Foreground" Value="#0D0D0D"/>
+                            <Setter Property="Foreground" Value="Black"/>
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="DataGridColumnHeader">
                                         <Border Background="#0D0D0D" BorderThickness="0">
                                             <Border x:Name="border"
-                              BorderBrush="#0D0D0D"
-                              BorderThickness="2"
+                              BorderBrush="#045C70"
+                              BorderThickness="0 2 2 2"
                               Background="White">
                                                 <ContentPresenter HorizontalAlignment="Center"/>
                                             </Border>
@@ -75,14 +75,14 @@
                             <Setter Property="Background" Value="#0D0D0D"/>
                             <Setter Property="BorderBrush" Value="White"/>
                             <Setter Property="BorderThickness" Value="2"/>
-                            <Setter Property="Foreground" Value="#0D0D0D"/>
+                            <Setter Property="Foreground" Value="Black"/>
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="DataGridColumnHeader">
                                         <Border Background="#0D0D0D" BorderThickness="0">
                                             <Border x:Name="border"
-                              BorderBrush="#0D0D0D"
-                              BorderThickness="2"
+                              BorderBrush="#045C70"
+                              BorderThickness="0 2 2 2"
                               Background="White">
                                                 <ContentPresenter HorizontalAlignment="Center"/>
                                             </Border>
@@ -99,14 +99,14 @@
                             <Setter Property="Background" Value="#0D0D0D"/>
                             <Setter Property="BorderBrush" Value="White"/>
                             <Setter Property="BorderThickness" Value="2"/>
-                            <Setter Property="Foreground" Value="#0D0D0D"/>
+                            <Setter Property="Foreground" Value="Black"/>
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="DataGridColumnHeader">
                                         <Border Background="#0D0D0D" BorderThickness="0">
                                             <Border x:Name="border"
-                              BorderBrush="#0D0D0D"
-                              BorderThickness="2"
+                              BorderBrush="#045C70"
+                              BorderThickness="0 2 2 2"
                               Background="White">
                                                 <ContentPresenter HorizontalAlignment="Center"/>
                                             </Border>
@@ -123,14 +123,14 @@
                             <Setter Property="Background" Value="#0D0D0D"/>
                             <Setter Property="BorderBrush" Value="White"/>
                             <Setter Property="BorderThickness" Value="2"/>
-                            <Setter Property="Foreground" Value="#0D0D0D"/>
+                            <Setter Property="Foreground" Value="Black"/>
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="DataGridColumnHeader">
                                         <Border Background="#0D0D0D" BorderThickness="0">
                                             <Border x:Name="border"
-                              BorderBrush="#0D0D0D"
-                              BorderThickness="2"
+                              BorderBrush="#045C70"
+                              BorderThickness="0 2 2 2"
                               Background="White">
                                                 <ContentPresenter HorizontalAlignment="Center"/>
                                             </Border>
@@ -147,14 +147,14 @@
                             <Setter Property="Background" Value="#0D0D0D"/>
                             <Setter Property="BorderBrush" Value="White"/>
                             <Setter Property="BorderThickness" Value="2"/>
-                            <Setter Property="Foreground" Value="#0D0D0D"/>
+                            <Setter Property="Foreground" Value="Black"/>
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="DataGridColumnHeader">
                                         <Border Background="#0D0D0D" BorderThickness="0">
                                             <Border x:Name="border"
-                             BorderBrush="#0D0D0D"
-                              BorderThickness="2"
+                             BorderBrush="#045C70"
+                              BorderThickness="0 2 2 2"
                               Background="White">
                                                 <ContentPresenter HorizontalAlignment="Center"/>
                                             </Border>
@@ -171,14 +171,14 @@
                             <Setter Property="Background" Value="#0D0D0D"/>
                             <Setter Property="BorderBrush" Value="White"/>
                             <Setter Property="BorderThickness" Value="2"/>
-                            <Setter Property="Foreground" Value="#0D0D0D"/>
+                            <Setter Property="Foreground" Value="Black"/>
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="DataGridColumnHeader">
                                         <Border Background="#0D0D0D" BorderThickness="0">
                                             <Border x:Name="border"
-                              BorderBrush="#0D0D0D"
-                              BorderThickness="2"
+                              BorderBrush="#045C70"
+                              BorderThickness="0 2 2 2"
                               Background="White">
                                                 <ContentPresenter HorizontalAlignment="Center"/>
                                             </Border>
@@ -201,29 +201,29 @@
             <StackPanel Grid.Column="0" Orientation="Vertical" Margin="10 0 10 0">
                 <TextBlock Text="Имя" 
                            FontSize="24"/>
-                <TextBox x:Name="tbNameWorker"  FontSize="22" Style="{DynamicResource TextBoxStyle1}"/>
+                <TextBox x:Name="tbNameWorker"  FontSize="22" Style="{DynamicResource TextBoxStyle2}"/>
                 <TextBlock Text="Логин" 
                            FontSize="24"/>
-                <TextBox x:Name="tbLoginWorker" FontSize="22" Style="{DynamicResource TextBoxStyle1}"/>
+                <TextBox x:Name="tbLoginWorker" FontSize="22" Style="{DynamicResource TextBoxStyle2}"/>
                 <TextBlock Text="Пароль" 
                            FontSize="24"/>
-                <TextBox x:Name="tbPasswordWorker" FontSize="22" Style="{DynamicResource TextBoxStyle1}"/>
+                <TextBox x:Name="tbPasswordWorker" FontSize="22" Style="{DynamicResource TextBoxStyle2}"/>
             </StackPanel>
             <StackPanel Grid.Column="1" Orientation="Vertical" Margin="10 0 10 0">
                 <TextBlock Text="ip" 
                            FontSize="24"/>
-                <TextBox x:Name="tbIpWorker" FontSize="22" Style="{DynamicResource TextBoxStyle1}"/>
+                <TextBox x:Name="tbIpWorker" FontSize="22" Style="{DynamicResource TextBoxStyle2}"/>
                 <TextBlock Text="Время" 
                            FontSize="24"/>
-                <TextBox x:Name="tbLasneterWorker" FontSize="22" Style="{DynamicResource TextBoxStyle1}"/>
+                <TextBox x:Name="tbLasneterWorker" FontSize="22" Style="{DynamicResource TextBoxStyle2}"/>
             </StackPanel>
             <StackPanel Grid.Column="2" Orientation="Vertical" Margin="10 0 10 0">
                 <TextBlock Text="Услуги" 
                            FontSize="24"/>
-                <ComboBox x:Name="ComboService" SelectedItem="{Binding Service}" FontSize="22" DisplayMemberPath="service1"/>
+                <ComboBox x:Name="ComboService" SelectedItem="{Binding service1}" IsEditable="True" IsReadOnly="False" Template="{DynamicResource ComboBoxTemplate2}"/>
                 <TextBlock Text="Должность" 
                            FontSize="24"/>
-                <ComboBox x:Name="ComboDolgnost" SelectedItem="{Binding Type}" FontSize="22" DisplayMemberPath="role"/>
+                <ComboBox x:Name="ComboDolgnost" SelectedItem="{Binding role}" IsEditable="True" IsReadOnly="False" Template="{DynamicResource ComboBoxTemplate}"/>
             </StackPanel>
             <StackPanel Grid.Column="3" Orientation="Vertical" Margin="10 0 10 0">
                 <Button x:Name="btnAddWorker" Content="Добавить" Click="btnAddWorker_Click"

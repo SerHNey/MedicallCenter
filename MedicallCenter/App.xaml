@@ -4,13 +4,114 @@
              xmlns:local="clr-namespace:MedicallCenter"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+        <Style x:Key="ComboBoxEditableTextBox" TargetType="{x:Type TextBox}">
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Setter Property="AllowDrop" Value="true"/>
+            <Setter Property="MinWidth" Value="0"/>
+            <Setter Property="MinHeight" Value="0"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <ScrollViewer x:Name="PART_ContentHost" Background="Transparent" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ToggleButtonStyle3" TargetType="{x:Type ToggleButton}">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#045C70"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0 1 1 1" CornerRadius="0 5 5 0" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsPressed" Value="true">
+                    <Setter Property="Margin" Value="1"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <ControlTemplate x:Key="ComboBoxTemplate" TargetType="{x:Type ComboBox}">
+            <Grid x:Name="templateRoot" SnapsToDevicePixels="true">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="0.3in"/>
+                </Grid.ColumnDefinitions>
+                <Popup x:Name="PART_Popup" AllowsTransparency="true" Grid.ColumnSpan="2" IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}" Placement="Bottom" PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}">
+                    <Border x:Name="dropDownBorder" Background="#262626" BorderBrush="#747474" BorderThickness="1" CornerRadius="3">
+                        <ScrollViewer x:Name="DropDownScrollViewer">
+                            <Grid x:Name="grid" RenderOptions.ClearTypeHint="Enabled">
+                                <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
+                                    <Rectangle x:Name="opaqueRect" Fill="{Binding Background, ElementName=dropDownBorder}" Height="{Binding ActualHeight, ElementName=dropDownBorder}" Width="{Binding ActualWidth, ElementName=dropDownBorder}"/>
+                                </Canvas>
+                                <StackPanel Grid.ColumnSpan="2">
+                                    <Button Content="+" Style="{DynamicResource ButtonStyle1}" x:Name="add_locBtn"  Background="#045C70"/>
+                                    <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                </StackPanel>
+                            </Grid>
+                        </ScrollViewer>
+                    </Border>
+                </Popup>
+                <ToggleButton x:Name="toggleButton" Background="#045C70" Grid.Column="2" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Style="{DynamicResource ToggleButtonStyle3}">
+                    <Image Source="/arrow.png" Stretch="Uniform"/>
+                </ToggleButton>
+                <Border x:Name="border" BorderBrush="#606060" BorderThickness="1 1 0 1" CornerRadius="5 0 0 5">
+                    <TextBox x:Name="PART_EditableTextBox" Foreground="Black" FontSize="16" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}" Style="{StaticResource ComboBoxEditableTextBox}" VerticalContentAlignment="Center"/>
+                </Border>
+            </Grid>
+        </ControlTemplate>
+        <ControlTemplate x:Key="ComboBoxTemplate2" TargetType="{x:Type ComboBox}">
+            <Grid x:Name="templateRoot" SnapsToDevicePixels="true">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="0.2in"/>
+                    <ColumnDefinition Width="0.3in"/>
+                </Grid.ColumnDefinitions>
+                <Popup x:Name="PART_Popup" AllowsTransparency="true" Grid.ColumnSpan="2" IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}" Placement="Bottom" PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}">
+                    <Border x:Name="dropDownBorder" Background="#262626" BorderBrush="#747474" BorderThickness="1" CornerRadius="3">
+                        <ScrollViewer x:Name="DropDownScrollViewer">
+                            <Grid x:Name="grid" RenderOptions.ClearTypeHint="Enabled">
+                                <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
+                                    <Rectangle x:Name="opaqueRect" Fill="{Binding Background, ElementName=dropDownBorder}" Height="{Binding ActualHeight, ElementName=dropDownBorder}" Width="{Binding ActualWidth, ElementName=dropDownBorder}"/>
+                                </Canvas>
+                                <StackPanel Grid.ColumnSpan="2">
+                                    <Button Content="+" Style="{DynamicResource ButtonStyle1}" x:Name="add_locBtn"  Background="#045C70"/>
+                                    <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                </StackPanel>
+                            </Grid>
+                        </ScrollViewer>
+                    </Border>
+                </Popup>
+                <ToggleButton x:Name="toggleButton" Background="#045C70" Grid.Column="2" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Style="{DynamicResource ToggleButtonStyle3}">
+                    <Image Source="/arrow.png" Stretch="Uniform"/>
+                </ToggleButton>
+                <Border Grid.Column="1" Background="red">
+                    <Button Content="✖" Foreground="white" Style="{DynamicResource ButtonStyle1}" Background="Transparent" FontSize="10" x:Name="del_location" />
+                </Border>
+                <Border x:Name="border" BorderBrush="#606060" BorderThickness="1 1 0 1" CornerRadius="5 0 0 5">
+                    <TextBox x:Name="PART_EditableTextBox" Foreground="Black" FontSize="16" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}" Style="{StaticResource ComboBoxEditableTextBox}" VerticalContentAlignment="Center"/>
+                </Border>
+            </Grid>
+        </ControlTemplate>
         <Style x:Key="ScrollBarThumbStyle" TargetType="{x:Type Thumb}">
             <Setter Property="IsTabStop" Value="False"/>
             <Setter Property="Focusable" Value="False"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Thumb}">
-                        <Rectangle Fill="#747474" RadiusY="10" RadiusX="10"></Rectangle>
+                        <Rectangle Fill="#045C70" RadiusY="5" RadiusX="10"></Rectangle>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -32,7 +133,7 @@
             <Setter Property="Template" Value="{StaticResource VerticalScrollBar}"/>
         </Style>
         <Style x:Key="DataGridStyle1" TargetType="{x:Type DataGrid}">
-            <Setter Property="Background" Value="#262626"/>
+            <Setter Property="Background" Value="White"/>
             <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
             <Setter Property="BorderBrush" Value="#3F3F3F"/>
             <Setter Property="BorderThickness" Value="2"/>
@@ -110,74 +211,6 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
-        <Style TargetType="{x:Type ComboBox}">
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="BorderThickness" Value="2"/>
-            <Setter Property="Margin" Value="0 0.08in"/>
-            <Setter Property="FontSize" Value="15"/>
-            <Setter Property="Button.BitmapEffect">
-                <Setter.Value>
-                    <DropShadowBitmapEffect Color="Black" Direction="320" Softness="0.3" ShadowDepth="5" Opacity="0.6" />
-                </Setter.Value>
-            </Setter>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type ComboBox}">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition MaxWidth="18"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBox Name="PART_EditableTextBox"
-                                 Style="{StaticResource ComboBoxTextBoxStyle}"
-                                 Padding="5,0,0,0"
-                                 Height="{TemplateBinding Height}"/>
-                            <ToggleButton Grid.Column="1" Margin="0"
-                                     Height="{TemplateBinding Height}"
-                                     Focusable="False"
-                                     IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                                      ClickMode="Press">
-                                <Path Grid.Column="1"
-                                  HorizontalAlignment="Center"
-                                  VerticalAlignment="Center"
-                                  Data="M 0 0 L 4 4 L 8 0 Z"
-                                  Fill="DodgerBlue" />
-                            </ToggleButton>
-                            <ContentPresenter Name="ContentSite"
-                                      Content="{TemplateBinding SelectionBoxItem}"
-                                      ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
-                                      ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
-                                      VerticalAlignment="Center"
-                                      HorizontalAlignment="Left"
-                                      Margin="5,0,0,0"/>
-                            <Popup Name="Popup"
-                               Placement="Bottom"
-                               IsOpen="{TemplateBinding IsDropDownOpen}"
-                               AllowsTransparency="True" 
-                               Focusable="False"
-                               PopupAnimation="Slide">
-                                <Grid Name="DropDown"
-                                  SnapsToDevicePixels="True"                
-                                  MinWidth="{TemplateBinding ActualWidth}"
-                                  MaxHeight="{TemplateBinding MaxDropDownHeight}">
-                                    <Border 
-                                    x:Name="DropDownBorder"
-                                    BorderThickness="1"
-                                    CornerRadius="5"
-                                    Background="Azure"
-                                    BorderBrush="Black"/>
-                                    <ScrollViewer Margin="4,6,4,6" SnapsToDevicePixels="True">
-                                        <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
-                                    </ScrollViewer>
-                                </Grid>
-                            </Popup>
-                        </Grid>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
         <Style x:Key="ButtonStyle2" TargetType="{x:Type Button}">
             <Setter Property="Background" Value="White"/>
             <Setter Property="Width" Value="0.3in"/>
@@ -204,17 +237,10 @@
             <Setter Property="Background" Value="White"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="Padding" Value="0.13in"/>
-            <Setter Property="Margin" Value="0 0.08in"/>
-            <Setter Property="BitmapEffect">
-                <Setter.Value>
-                    <DropShadowBitmapEffect Color="Black" Direction="320" Opacity="0.6" Softness="0.5" ShadowDepth="6"/>
-                </Setter.Value>
-            </Setter>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="#045C70" BorderThickness="2" CornerRadius="50" SnapsToDevicePixels="true">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="#045C70" BorderThickness="0 1" SnapsToDevicePixels="true">
                             <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                         </Border>
                     </ControlTemplate>
@@ -254,6 +280,20 @@
         <Style x:Key="TextBoxStyle1" TargetType="{x:Type TextBox}">
             <Setter Property="Background" Value="White"/>
             <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="5 0 0 5" BorderBrush="#045C70" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
+                            <ScrollViewer  x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="TextBoxStyle2" TargetType="{x:Type TextBox}">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="Black"/>
             <Setter Property="BorderThickness" Value="2"/>
             <Setter Property="Button.BitmapEffect">
                 <Setter.Value>
@@ -264,36 +304,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type TextBox}">
                         <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="5" BorderBrush="#045C70" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition Width="4*"/>
-                                </Grid.ColumnDefinitions>
-                                <Image Source="Image/search.png" Stretch="Uniform" Margin="-0.3in 0.15in 0 0.15in"/>
-                                <ScrollViewer  x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"  Grid.Column="1" Margin="-0.35in 0 0.04in 0" VerticalAlignment="Center" FontSize="0.2in" BorderThickness="0"/>
-                            </Grid>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <Style x:Key="TextBoxStyle2" TargetType="{x:Type TextBox}">
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="BorderThickness" Value="2"/>
-            <Setter Property="FontSize" Value="15"/>
-            <Setter Property="Margin" Value="0 0.08in"/>
-            <Setter Property="Width" Value="5in"/>
-            <Setter Property="Button.BitmapEffect">
-                <Setter.Value>
-                    <DropShadowBitmapEffect Color="Black" Direction="320" Softness="0.3" ShadowDepth="5" Opacity="0.6" />
-                </Setter.Value>
-            </Setter>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type TextBox}">
-                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="15" BorderBrush="#045C70" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
-                            <ScrollViewer  x:Name="PART_ContentHost" HorizontalScrollBarVisibility="Hidden" Margin="10 0" VerticalScrollBarVisibility="Hidden"  VerticalAlignment="Center" BorderThickness="0"/>
+                            <ScrollViewer  x:Name="PART_ContentHost" HorizontalScrollBarVisibility="Hidden" Margin="0" VerticalScrollBarVisibility="Hidden"  VerticalAlignment="Center" BorderThickness="0"/>
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
