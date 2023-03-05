@@ -2,6 +2,7 @@
 using MedicallCenter.Clasees;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -82,7 +83,7 @@ namespace MedicalCenter.Pages
         {
             if (GetData())
             {
-                CurrentData.db.User.Add(currentuser);
+                CurrentData.db.User.AddOrUpdate(currentuser);
                 SaveChang();
                 MessageBox.Show("Запись успешно добавлена");
                 btnEditUser.Visibility = Visibility.Visible;
