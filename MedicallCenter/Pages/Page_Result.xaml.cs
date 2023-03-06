@@ -24,13 +24,11 @@ namespace MedicalCenter.Pages
     public partial class Page_Result : Page
     {
         private Result currentresult = new Result();
+
         public Page_Result()
         {
             InitializeComponent();
             DataGridResult.ItemsSource = EntitiesMedical.GetEntities().Result.ToList();
-            ComboUser.ItemsSource = CurrentData.db.User.ToList();
-            ComboWorker.ItemsSource= CurrentData.db.Worker.ToList();
-            ComboService.ItemsSource= CurrentData.db.Service.ToList();
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -57,48 +55,12 @@ namespace MedicalCenter.Pages
 
         private void btnEditResult_Click(object sender, RoutedEventArgs e)
         {
-
             if (DataGridResult.SelectedItem != null)
-            {
                 currentresult = DataGridResult.SelectedItem as Result;
-                ComboUser.Text = CurrentData.results.Where(x => x.User.name == currentresult.User.name).FirstOrDefault().User.name;
-                ComboWorker.Text = CurrentData.results.Where(x => x.Worker.name == currentresult.Worker.name).FirstOrDefault().Worker.name;
-                ComboService.Text = CurrentData.results.Where(x => x.Service.service1 == currentresult.Service.service1).FirstOrDefault().Service.service1;
-                tbResultResult.Text = currentresult.result1;
-                tbDateResult.Text = currentresult.date;
-               
+            Manager.frame.Navigate(new Page_ResultAddEdit(currentresult));
 
-                btnEditSecodnResult.Visibility = Visibility.Visible;
-            }
         }
 
-        private void btnEditSecodnResult_Click(object sender, RoutedEventArgs e)
-        {
-            if (GetData())
-            {
-                CurrentData.db.Result.AddOrUpdate(currentresult);
-                SaveChang();
-                MessageBox.Show("Запись успешно добавлена");
-                btnEditResult.Visibility = Visibility.Visible;
-                btnEditSecodnResult.Visibility = Visibility.Hidden;
-            }
-        }
-
-        private bool GetData()
-        {
-            StringBuilder stringBuilder = new StringBuilder();
-
-            if (stringBuilder.ToString() == "")
-            {
-                currentresult.id_user = CurrentData.users.FirstOrDefault(x => x.name == ComboUser.Text).id;
-                currentresult.id_lab = CurrentData.workers.FirstOrDefault(x => x.name == ComboWorker.Text).id;
-                currentresult.id_service = CurrentData.services.FirstOrDefault(x => x.service1 == ComboService.Text).id;
-                currentresult.result1 = tbResultResult.Text;
-                currentresult.date = tbDateResult.Text;
-                return true;
-            }
-            return false;
-        }
         private void SaveChang()
         {
             CurrentData.db.SaveChanges();
@@ -107,12 +69,9 @@ namespace MedicalCenter.Pages
 
         private void bntAddResult_Click(object sender, RoutedEventArgs e)
         {
-            if (GetData()) 
-            {
-                CurrentData.db.Result.Add(currentresult);
-                SaveChang();
-                MessageBox.Show("Запись успешно добавлена");
-            }
+            if (DataGridResult.SelectedItem != null)
+                currentresult = new Result();
+            Manager.frame.Navigate(new Page_ResultAddEdit(currentresult));
         }
     }
 }
