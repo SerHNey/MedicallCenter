@@ -77,6 +77,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Page_EditWorkers.xaml.cs">
+      <DependentUpon>Page_EditWorkers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\WIndows\addService.xaml.cs">
+      <DependentUpon>addService.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -132,9 +138,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Pages\Page_EditWorkers.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Pages\Page_Workers.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\WIndows\addService.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

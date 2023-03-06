@@ -57,7 +57,6 @@
                                     <Rectangle x:Name="opaqueRect" Fill="{Binding Background, ElementName=dropDownBorder}" Height="{Binding ActualHeight, ElementName=dropDownBorder}" Width="{Binding ActualWidth, ElementName=dropDownBorder}"/>
                                 </Canvas>
                                 <StackPanel Grid.ColumnSpan="2">
-                                    <Button Content="+" Style="{DynamicResource ButtonStyle1}" x:Name="add_locBtn"  Background="#045C70"/>
                                     <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                                 </StackPanel>
                             </Grid>
@@ -87,7 +86,7 @@
                                     <Rectangle x:Name="opaqueRect" Fill="{Binding Background, ElementName=dropDownBorder}" Height="{Binding ActualHeight, ElementName=dropDownBorder}" Width="{Binding ActualWidth, ElementName=dropDownBorder}"/>
                                 </Canvas>
                                 <StackPanel Grid.ColumnSpan="2">
-                                    <Button Content="+" Style="{DynamicResource ButtonStyle1}" x:Name="add_locBtn"  Background="#045C70"/>
+                                    <Button Content="+" Style="{DynamicResource ButtonStyle1}" x:Name="add_locBtn"  Background="#045C70" Click="add_locBtn_Click" Tag="{Binding RelativeSource={RelativeSource TemplatedParent}}" />
                                     <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                                 </StackPanel>
                             </Grid>
@@ -98,7 +97,7 @@
                     <Image Source="/arrow.png" Stretch="Uniform"/>
                 </ToggleButton>
                 <Border Grid.Column="1" Background="red">
-                    <Button Content="✖" Foreground="white" Style="{DynamicResource ButtonStyle1}" Background="Transparent" FontSize="10" x:Name="del_location" />
+                    <Button Content="✖" Foreground="white" Style="{DynamicResource ButtonStyle1}" Background="Transparent" FontSize="10" x:Name="del_location" Click="del_location_Click" Tag="{Binding RelativeSource={RelativeSource TemplatedParent}}"/>
                 </Border>
                 <Border x:Name="border" BorderBrush="#606060" BorderThickness="1 1 0 1" CornerRadius="5 0 0 5">
                     <TextBox x:Name="PART_EditableTextBox" Foreground="Black" FontSize="16" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}" Style="{StaticResource ComboBoxEditableTextBox}" VerticalContentAlignment="Center"/>
@@ -137,13 +136,10 @@
             <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
             <Setter Property="BorderBrush" Value="#3F3F3F"/>
             <Setter Property="BorderThickness" Value="2"/>
-            <Setter Property="RowDetailsVisibilityMode" Value="VisibleWhenSelected"/>
-            <Setter Property="ScrollViewer.CanContentScroll" Value="true"/>
-            <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
-            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+            <Setter Property="Margin" Value="10 0"/>
+            <Setter Property="CanUserResizeColumns" Value="True" />
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="RowHeaderWidth" Value="0" />
-            <Setter Property="HorizontalScrollBarVisibility" Value="Disabled" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type DataGrid}">
