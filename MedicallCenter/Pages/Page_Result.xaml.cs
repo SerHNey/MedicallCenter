@@ -2,6 +2,7 @@
 using MedicallCenter.Clasees;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,7 @@ namespace MedicalCenter.Pages
     /// </summary>
     public partial class Page_Result : Page
     {
+        private Result currentresult = new Result();
         public Page_Result()
         {
             InitializeComponent();
@@ -45,8 +47,7 @@ namespace MedicalCenter.Pages
                 try
                 {
                     EntitiesMedical.GetEntities().Result.RemoveRange(resultForDelete);
-                    EntitiesMedical.GetEntities().SaveChanges();
-                    DataGridResult.ItemsSource = EntitiesMedical.GetEntities().Result.ToList();
+                    SaveChang();
                 }catch(Exception ex)
                 {
                     MessageBox.Show(ex.ToString());
@@ -57,11 +58,61 @@ namespace MedicalCenter.Pages
         private void btnEditResult_Click(object sender, RoutedEventArgs e)
         {
 
+            if (DataGridResult.SelectedItem != null)
+            {
+                currentresult = DataGridResult.SelectedItem as Result;
+                ComboUser.Text = CurrentData.results.Where(x => x.User.name == currentresult.User.name).FirstOrDefault().User.name;
+                ComboWorker.Text = CurrentData.results.Where(x => x.Worker.name == currentresult.Worker.name).FirstOrDefault().Worker.name;
+                ComboService.Text = CurrentData.results.Where(x => x.Service.service1 == currentresult.Service.service1).FirstOrDefault().Service.service1;
+                tbResultResult.Text = currentresult.result1;
+                tbDateResult.Text = currentresult.date;
+               
+
+                btnEditSecodnResult.Visibility = Visibility.Visible;
+            }
         }
 
         private void btnEditSecodnResult_Click(object sender, RoutedEventArgs e)
         {
+            if (GetData())
+            {
+                CurrentData.db.Result.AddOrUpdate(currentresult);
+                SaveChang();
+                MessageBox.Show("Запись успешно добавлена");
+                btnEditResult.Visibility = Visibility.Visible;
+                btnEditSecodnResult.Visibility = Visibility.Hidden;
+            }
+        }
 
+        private bool GetData()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+
+            if (stringBuilder.ToString() == "")
+            {
+                currentresult.id_user = CurrentData.users.FirstOrDefault(x => x.name == ComboUser.Text).id;
+                currentresult.id_lab = CurrentData.workers.FirstOrDefault(x => x.name == ComboWorker.Text).id;
+                currentresult.id_service = CurrentData.services.FirstOrDefault(x => x.service1 == ComboService.Text).id;
+                currentresult.result1 = tbResultResult.Text;
+                currentresult.date = tbDateResult.Text;
+                return true;
+            }
+            return false;
+        }
+        private void SaveChang()
+        {
+            CurrentData.db.SaveChanges();
+            DataGridResult.ItemsSource = CurrentData.db.Result.ToList();
+        }
+
+        private void bntAddResult_Click(object sender, RoutedEventArgs e)
+        {
+            if (GetData()) 
+            {
+                CurrentData.db.Result.Add(currentresult);
+                SaveChang();
+                MessageBox.Show("Запись успешно добавлена");
+            }
         }
     }
 }

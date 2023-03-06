@@ -73,7 +73,6 @@ namespace MedicalCenter.Pages
         {
             if(DataGridWorkers.SelectedItem != null)
             {
-
                 curerentworker = DataGridWorkers.SelectedItem as Worker;
                 tbNameWorker.Text = curerentworker.name;
                 tbLoginWorker.Text = curerentworker.login;
@@ -81,12 +80,8 @@ namespace MedicalCenter.Pages
                 tbIpWorker.Text = curerentworker.ip;
                 tbLasneterWorker.Text = curerentworker.lastenter;
                 JArray json = JArray.Parse(curerentworker.services);
-                //ComboDolgnost.SelectedItem = CurrentData.db.Type.ToList().Where(curerentworker.Type1. => curerentworker.Type1 == "Пользователь").FirstOrDefault().id;
-                /* Хер знает как засунуть в ComboBox                               Доделать Редактирование
-                 * 
-                ComboDolgnost.SelectedItem = CurrentData.db.Type.ToList().Where(x => x.role == ComboDolgnost.Text).FirstOrDefault().id;a
-                curerentworker.type = CurrentData.db.Type.ToList().Where(x => x.role == ComboDolgnost.Text).FirstOrDefault().id;
-                */
+                ComboDolgnost.Text = CurrentData.types.Where(x => x.role == curerentworker.Type1.role).FirstOrDefault().role;
+
 
                 btnEditSecondWorker.Visibility = Visibility.Visible;
             }

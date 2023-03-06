@@ -43,19 +43,19 @@
             <StackPanel Grid.Column="1" Orientation="Vertical" Margin="10 0 10 0">
                 <TextBlock Text="Результат" 
                            FontSize="24"/>
-                <TextBox FontSize="22"/>
+                <TextBox x:Name="tbResultResult" FontSize="22"/>
                 <TextBlock Text="Дата" 
                            FontSize="24"/>
-                <TextBox FontSize="22"/>
+                <TextBox x:Name="tbDateResult" FontSize="22"/>
             </StackPanel>
             
             <StackPanel Grid.Column="3" Orientation="Vertical" Margin="10 0 10 0">
-                <Button x:Name="bntAddResult" Content="Добавить" 
+                <Button x:Name="bntAddResult" Content="Добавить" Click="bntAddResult_Click"
                         FontSize="20" Margin="0 10 0 0"/>
                 <Grid>
                     <Button x:Name="btnEditResult" Content="Редактировать" Click="btnEditResult_Click"
                         FontSize="20" Margin="0 10 0 0"/>
-                    <Button x:Name="btnEditSecodnResult" Content="Редактировать" Visibility="Hidden" Click="btnEditSecodnResult_Click"
+                    <Button x:Name="btnEditSecodnResult" Content="Сохранить" Visibility="Hidden" Click="btnEditSecodnResult_Click"
                         FontSize="20" Margin="0 10 0 0"/>
                 </Grid>
 

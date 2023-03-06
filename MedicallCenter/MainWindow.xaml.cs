@@ -38,6 +38,7 @@ namespace MedicallCenter
             CurrentData.users = CurrentData.db.User.ToList();
             CurrentData.services = CurrentData.db.Service.ToList();
             CurrentData.workers = CurrentData.db.Worker.ToList();
+            CurrentData.types = CurrentData.db.Type.ToList();
         }
     }
 }
