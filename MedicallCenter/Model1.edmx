@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Result">
           <Key>
             <PropertyRef Name="id" />
@@ -21,6 +21,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kod_service" Type="int" />
           <Property Name="service" Type="nchar" MaxLength="30" />
           <Property Name="price" Type="float" />
         </EntityType>
@@ -137,8 +138,7 @@
             <End Role="Worker" EntitySet="Worker" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -164,6 +164,7 @@
           <Property Name="service1" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
           <Property Name="price" Type="Double" />
           <NavigationProperty Name="Result" Relationship="Self.FK_Result_Service1" FromRole="Service" ToRole="Result" />
+          <Property Name="kod_service" Type="Int32" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -303,6 +304,7 @@
           <EntitySetMapping Name="Service">
             <EntityTypeMapping TypeName="Model.Service">
               <MappingFragment StoreEntitySet="Service">
+                <ScalarProperty Name="kod_service" ColumnName="kod_service" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="service1" ColumnName="service" />
                 <ScalarProperty Name="price" ColumnName="price" />

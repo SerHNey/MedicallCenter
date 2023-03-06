@@ -26,7 +26,6 @@ namespace MedicallCenter
             return _context ?? (_context = new EntitiesMedical());
         }
 
-    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();

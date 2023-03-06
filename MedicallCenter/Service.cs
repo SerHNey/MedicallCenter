@@ -23,6 +23,7 @@ namespace MedicallCenter
         public int id { get; set; }
         public string service1 { get; set; }
         public Nullable<double> price { get; set; }
+        public Nullable<int> kod_service { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Result> Result { get; set; }

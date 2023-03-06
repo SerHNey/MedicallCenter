@@ -79,6 +79,7 @@ namespace MedicalCenter.Pages
                 if (tbPriceService.Text != "")
                 {
                     currentServis.service1 = tbNameService.Text;
+                    currentServis.kod_service = Convert.ToInt16(tbKodService.Text);
                     try
                     {
                         currentServis.price = Convert.ToDouble(tbPriceService.Text);
