@@ -81,12 +81,12 @@ namespace MedicalCenter.Pages
                 tbIpWorker.Text = curerentworker.ip;
                 tbLasneterWorker.Text = curerentworker.lastenter;
                 JArray json = JArray.Parse(curerentworker.services);
-
-                /* Хер знает как засунуть в ComboBox                               Доделать Редактирование
-                 * 
-                ComboDolgnost.SelectedItem = CurrentData.db.Type.ToList().Where(x => x.role == ComboDolgnost.Text).FirstOrDefault().id;a
-                curerentworker.type = CurrentData.db.Type.ToList().Where(x => x.role == ComboDolgnost.Text).FirstOrDefault().id;
-                */
+                List<Service> cur_services = new List<Service>();
+                foreach (JObject jobj in json)
+                {
+                    cur_services.Add(CurrentData.services.FirstOrDefault(n=>n.kod_service == (int)jobj["code"]));
+                }
+                ComboService.ItemsSource = cur_services;
 
                 btnEditSecondWorker.Visibility = Visibility.Visible;
             }
@@ -140,5 +140,30 @@ namespace MedicalCenter.Pages
             }
             return false;
         }
+
+        private void search_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (search.Text == "Поиск")
+                search.Text = "";
+            else if (search.Text == "")
+                search.Text = "Поиск";
+        }
+        private void TBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (search.Text != "" && DataGridWorkers != null)
+            {
+                var filterName = CurrentData.workers.Where(n=>n.name.ToLower().Contains(search.Text.ToLower()));
+                DataGridWorkers.ItemsSource = filterName;
+            }
+            else
+            {
+                if (DataGridWorkers != null)
+                {
+                    DataGridWorkers.ItemsSource = CurrentData.workers;
+                }
+
+            }
+        }
+
     }
 }
