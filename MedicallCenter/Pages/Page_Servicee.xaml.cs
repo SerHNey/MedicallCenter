@@ -98,6 +98,7 @@ namespace MedicalCenter.Pages
         private void OutInfoEditService()
         {
             currentServis = DataGridService.SelectedItem as Service;
+            tbKodService.Text = Convert.ToString(currentServis.kod_service);
             tbNameService.Text = currentServis.service1;
             tbPriceService.Text = Convert.ToString(currentServis.price);
         }
@@ -109,6 +110,7 @@ namespace MedicalCenter.Pages
                 OutInfoEditService();
                 btnEditSecondService.Visibility = Visibility.Visible;
                 dntAddService.IsEnabled = IsEnabled.Equals(false);
+                
             }
         }
 
@@ -118,6 +120,7 @@ namespace MedicalCenter.Pages
             {
                 CurrentData.db.Service.AddOrUpdate(currentServis);
                 SaveChang();
+                tbKodService.Text = null;
                 tbNameService.Text = null;
                 tbPriceService.Text = null;
                 MessageBox.Show("Запись успешно изменена");

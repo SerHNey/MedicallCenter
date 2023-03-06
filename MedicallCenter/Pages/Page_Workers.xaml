@@ -220,10 +220,10 @@
             <StackPanel Grid.Column="2" Orientation="Vertical" Margin="10 0 10 0">
                 <TextBlock Text="Услуги" 
                            FontSize="24"/>
-                <ComboBox x:Name="ComboService" SelectedItem="{Binding service1}" IsEditable="True" IsReadOnly="False" Template="{DynamicResource ComboBoxTemplate2}"/>
+                <ComboBox x:Name="ComboService" SelectedItem="{Binding Service}" IsEditable="True" IsReadOnly="False" DisplayMemberPath="service1" Template="{DynamicResource ComboBoxTemplate2}"/>
                 <TextBlock Text="Должность" 
                            FontSize="24"/>
-                <ComboBox x:Name="ComboDolgnost" SelectedItem="{Binding role}" IsEditable="True" IsReadOnly="False" Template="{DynamicResource ComboBoxTemplate}"/>
+                <ComboBox x:Name="ComboDolgnost" SelectedItem="{Binding Type}" IsEditable="True" IsReadOnly="False" DisplayMemberPath="role" Template="{DynamicResource ComboBoxTemplate}"/>
             </StackPanel>
             <StackPanel Grid.Column="3" Orientation="Vertical" Margin="10 0 10 0">
                 <Button x:Name="btnAddWorker" Content="Добавить" Click="btnAddWorker_Click"

@@ -81,7 +81,7 @@ namespace MedicalCenter.Pages
                 tbIpWorker.Text = curerentworker.ip;
                 tbLasneterWorker.Text = curerentworker.lastenter;
                 JArray json = JArray.Parse(curerentworker.services);
-
+                //ComboDolgnost.SelectedItem = CurrentData.db.Type.ToList().Where(curerentworker.Type1. => curerentworker.Type1 == "Пользователь").FirstOrDefault().id;
                 /* Хер знает как засунуть в ComboBox                               Доделать Редактирование
                  * 
                 ComboDolgnost.SelectedItem = CurrentData.db.Type.ToList().Where(x => x.role == ComboDolgnost.Text).FirstOrDefault().id;a
