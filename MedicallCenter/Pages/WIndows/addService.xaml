@@ -1,0 +1,35 @@
+﻿<Window x:Class="MedicallCenter.Pages.WIndows.addService"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MedicallCenter.Pages.WIndows"
+        mc:Ignorable="d"
+        Title="addService" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <ComboBox x:Name="combobox" Grid.Row="1" Grid.Column="1" SelectedItem="{Binding Service}" IsEditable="True" IsReadOnly="False" DisplayMemberPath="service1" Template="{DynamicResource ComboBoxTemplate}"/>
+        <Grid Grid.Column="1" Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="0.1*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="btn" Content="Добавить категорию"  Click="add_Click"/>
+            <Button Content="Отмена" Grid.Column="2"  Click="CLose_Click"/>
+        </Grid>
+
+    </Grid>
+</Window>
