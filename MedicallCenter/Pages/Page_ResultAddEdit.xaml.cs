@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -31,10 +32,7 @@ namespace MedicalCenter.Pages
             ComboUser112.ItemsSource = CurrentData.db.User.ToList();
             ComboWorker.ItemsSource= CurrentData.db.Worker.ToList();
             ComboService.ItemsSource= CurrentData.db.Service.ToList();
-            if (currentresult2.id != 0)
-            {
-                InputDate();
-            } 
+
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -98,6 +96,16 @@ namespace MedicalCenter.Pages
                 CurrentData.db.Result.Add(currentresult);
                 SaveChang();
                 MessageBox.Show("Запись успешно добавлена");
+            }
+        }
+
+
+
+        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (currentresult.id != 0)
+            {
+                InputDate();
             }
         }
     }

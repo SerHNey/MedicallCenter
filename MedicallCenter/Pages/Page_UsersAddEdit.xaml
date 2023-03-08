@@ -1,4 +1,4 @@
-﻿<Page x:Class="MedicalCenter.Pages.Page_ResultAddEdit"
+﻿<Page x:Class="MedicalCenter.Pages.Page_UsersAddEdit"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,9 +6,12 @@
       xmlns:local="clr-namespace:MedicalCenter.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Result">
+      Title="Users">
 
-    <Grid Loaded="Grid_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -16,35 +19,33 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
+            
             <StackPanel Grid.Column="0" Orientation="Vertical" Margin="10 0 10 0">
-                <TextBlock Text="Пациент" 
+                <TextBlock Text="Имя" 
                            FontSize="24"/>
-                <ComboBox x:Name="ComboUser112" SelectedItem="{Binding User}" FontSize="22" DisplayMemberPath="name"/>
-                <TextBlock Text="Работник" 
+                <TextBox x:Name="tbNameUser" FontSize="22"/>
+                <TextBlock Text="Логин" 
                            FontSize="24"/>
-                <ComboBox x:Name="ComboWorker" SelectedItem="{Binding Worker}" FontSize="22" DisplayMemberPath="name"/>
+                <TextBox x:Name="tbLoginUser" FontSize="22"/>
+                <TextBlock Text="Пароль" 
+                           FontSize="24"/>
+                <TextBox x:Name="tbPasswordUser" FontSize="22"/>
             </StackPanel>
             <StackPanel Grid.Column="1" Orientation="Vertical" Margin="10 0 10 0">
-                <TextBlock Text="Услуга" 
+                <TextBlock Text="Пол" 
                            FontSize="24"/>
-                <ComboBox x:Name="ComboService" SelectedItem="{Binding Service}" FontSize="22" DisplayMemberPath="service1"/>
-                <TextBlock Text="Результат" 
+                <TextBox x:Name="tbPolUser" FontSize="22"/>
+                <TextBlock Text="Возраст" 
                            FontSize="24"/>
-                <TextBox x:Name="tbResultResult" FontSize="22"/>
+                <TextBox x:Name="tbAgeUser" FontSize="22"/>
             </StackPanel>
-            <StackPanel Grid.Column="2" Orientation="Vertical" Margin="10 0 10 0">
-                <TextBlock Text="Дата" 
-                           FontSize="24"/>
-                <TextBox x:Name="tbDateResult" FontSize="22"/>
-            </StackPanel>
-            
             <StackPanel Grid.Column="3" Orientation="Vertical" Margin="10 0 10 0">
-                <Button x:Name="bntAddResult" Content="Добавить" Click="bntAddResult_Click"
+                <Button x:Name="btnAddUser" Content="Добавить" Click="btnAddUser_Click"
                         FontSize="20" Margin="0 10 0 0"/>
                 <Grid>
-                    <Button x:Name="btnEditResult" Content="Редактировать" Click="btnEditResult_Click"
+                    <Button x:Name="btnEditUser" Content="Редактировать" Click="btnEditUser_Click"
                         FontSize="20" Margin="0 10 0 0"/>
-                    <Button x:Name="btnEditSecodnResult" Content="Сохранить" Visibility="Hidden" Click="btnEditSecodnResult_Click"
+                    <Button Name="btnSaveUser" Content="Сохранить" Visibility="Hidden" Click="btnSaveUser_Click"
                         FontSize="20" Margin="0 10 0 0"/>
                 </Grid>
                 <Button x:Name="btnBack" Content="Вернуться" Click="btnBack_Click"

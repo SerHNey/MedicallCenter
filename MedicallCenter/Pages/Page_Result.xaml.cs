@@ -24,16 +24,78 @@ namespace MedicalCenter.Pages
     public partial class Page_Result : Page
     {
         private Result currentresult = new Result();
+        private int pageNumber = 0;
+        private int maxpage = 0;
+        private int pageSize = 20;
+        List<Result> results = new List<Result>();
 
         public Page_Result()
         {
             InitializeComponent();
-            DataGridResult.ItemsSource = EntitiesMedical.GetEntities().Result.ToList();
+
+            results = CurrentData.results;
+            maxpage = results.Count / pageSize;
+            DisplayDataInGrid();
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
             Manager.frame.Navigate(new Page_Home(CurrentData.worker));
+        }
+
+        private void DisplayDataInGrid()
+        {
+            var currentPageData = results.Skip(pageNumber * pageSize).Take(pageSize); // отображаем только данные для текущей страницы
+            DataGridResult.ItemsSource = currentPageData; // отображаем данные в DataGrid
+        }
+
+        private void NextPageButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (pageNumber < maxpage)
+            {
+                pageNumber++; // переход на следующую страницу
+                DisplayDataInGrid(); // отображение данных
+            }
+        }
+
+        private void PreviousPageButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (pageNumber > 0)
+            {
+                pageNumber--; // переход на предыдущую страницу
+                DisplayDataInGrid(); // отображение данных
+            }
+        }
+        private void search_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (search.Text == "Поиск")
+                search.Text = "";
+            else if (search.Text == "")
+                search.Text = "Поиск";
+        }
+        private void TBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (search.Text != "" && DataGridResult != null)
+            {
+                results = results.Where(n => n.User.name.ToLower().Contains(search.Text.ToLower())).ToList();
+                DataGridResult.ItemsSource = results;
+                maxpage = results.Count / pageSize;
+            }
+            else
+            {
+                if (DataGridResult != null)
+                {
+                    results = CurrentData.results;
+                    maxpage = results.Count / pageSize;
+                }
+
+            }
+        }
+
+        private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Worker worker = DataGridResult.SelectedValue as Worker;
+            Manager.frame.Navigate(new Page_ResultAddEdit(currentresult));
         }
 
         private void btnDeleteResult_Click(object sender, RoutedEventArgs e)
@@ -58,7 +120,6 @@ namespace MedicalCenter.Pages
             if (DataGridResult.SelectedItem != null)
                 currentresult = DataGridResult.SelectedItem as Result;
             Manager.frame.Navigate(new Page_ResultAddEdit(currentresult));
-
         }
 
         private void SaveChang()

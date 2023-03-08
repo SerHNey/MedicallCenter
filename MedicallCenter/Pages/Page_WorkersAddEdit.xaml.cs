@@ -24,10 +24,10 @@ namespace MedicalCenter.Pages
     /// Логика взаимодействия для Workers.xaml
     /// </summary>
 
-    public partial class Page_EditWorkers : Page
+    public partial class Page_WorkersAddEdit : Page
     {
         private Worker curerentworker;
-        public Page_EditWorkers(Worker worker)
+        public Page_WorkersAddEdit(Worker worker)
         {
             InitializeComponent();
             ComboService.ItemsSource = CurrentData.db.Service.ToList();
@@ -35,29 +35,10 @@ namespace MedicalCenter.Pages
             curerentworker = worker;
         }
 
-        //private void btnBack_Click(object sender, RoutedEventArgs e)
-        //{
-        //    Manager.frame.Navigate(new Page_Home(CurrentData.worker));
-        //}
-
-        //private void btnDelete_Click(object sender, RoutedEventArgs e)
-        //{
-        //    var workersForDelete = DataGridWorkers.SelectedItems.Cast<Worker>().ToList();
-        //    if (MessageBox.Show($"Вы точно хотите удалить следующие записи {workersForDelete.Count()} элементов","Внимание",
-        //        MessageBoxButton.YesNo,MessageBoxImage.Question)== MessageBoxResult.Yes)
-        //    {
-        //        try
-        //        {
-        //            CurrentData.db.Worker.RemoveRange(workersForDelete);
-        //            CurrentData.db.SaveChanges();
-        //            DataGridWorkers.ItemsSource = CurrentData.db.Worker.ToList();
-        //        }
-        //        catch(Exception ex)
-        //        {
-        //            MessageBox.Show(ex.ToString());
-        //        }
-        //    }
-        //}
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.frame.Navigate(new Page_Workers());
+        }
 
         //private void btnAddWorker_Click(object sender, RoutedEventArgs e)
         //{

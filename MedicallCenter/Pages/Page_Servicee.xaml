@@ -7,48 +7,98 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Servicee">
-
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1.4*"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <DataGrid x:Name="DataGridService" AutoGenerateColumns="False" IsReadOnly="True">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.2*" MaxHeight="0.8in"/>
+            <RowDefinition/>
+            <RowDefinition Height="0.2*" MaxHeight="0.8in"/>
+        </Grid.RowDefinitions>
+        <Button Content="На главную" HorizontalAlignment="Left" Margin="10" Padding="10 0" Click="btnBack_Click"/>
+        <Button Content="Удалить" HorizontalAlignment="Right" Margin="10" Padding="10 0" Click="bntDeleteService_Click" />
+        <Button Content="Добавить" HorizontalAlignment="Right" Margin="10 10 90 10" Padding="10 0" Click="btn_AddEditService_Click" />
+        <TextBox x:Name="search" Text="Поиск" Style="{DynamicResource TextBoxStyle2}" Margin="2in 0.1in" Padding="10 0" GotFocus="search_GotFocus" LostFocus="search_GotFocus" TextChanged="TBoxSearch_TextChanged"/>
+        <DataGrid x:Name="DataGridService" Grid.Row="1" AutoGenerateColumns="False" HorizontalGridLinesBrush="#045C70" VerticalGridLinesBrush="#045C70" IsReadOnly="True" Style="{DynamicResource DataGridStyle1}">
+            <FrameworkElement.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="LightGray"/>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="#045C70"/>
+                <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}" Color="BLue"/>
+            </FrameworkElement.Resources>
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <EventSetter Event="MouseDoubleClick" Handler="Grid_MouseLeftButtonDown"/>
+                </Style>
+            </DataGrid.RowStyle>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Услуга" Binding="{Binding kod_service}" Width="*"/>
-                <DataGridTextColumn Header="Услуга" Binding="{Binding service1}" Width="*"/>
-                <DataGridTextColumn Header="Цена" Binding="{Binding price}" Width="*"/>
+                <DataGridTextColumn Header="Номер услуги" Binding="{Binding kod_service}" Width="*">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="DataGridColumnHeader">
+                                        <Border x:Name="border"
+                              BorderBrush="#045C70"
+                              BorderThickness="2"
+                              Background="White"
+                              CornerRadius="5 0 0 0" Padding="5,0,5,5">
+                                            <ContentPresenter HorizontalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Услуга" Binding="{Binding service1}" Width="*">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Background" Value="#0D0D0D"/>
+                            <Setter Property="BorderBrush" Value="White"/>
+                            <Setter Property="BorderThickness" Value="2"/>
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="DataGridColumnHeader">
+                                        <Border x:Name="border"
+                              BorderBrush="#045C70"
+                              BorderThickness="0 2 2 2"
+                              Background="White">
+                                            <ContentPresenter HorizontalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Цена" Binding="{Binding price}" Width="*">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Background" Value="#0D0D0D"/>
+                            <Setter Property="BorderBrush" Value="White"/>
+                            <Setter Property="BorderThickness" Value="2"/>
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="DataGridColumnHeader">
+                                        <Border x:Name="border"
+                              BorderBrush="#045C70"
+                              BorderThickness="0 2 2 2"
+                              Background="White">
+                                            <ContentPresenter HorizontalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-
-        <StackPanel Orientation="Horizontal" Grid.Column="1" Margin="20 0">
-            <StackPanel Orientation="Vertical" Width="200">
-                <Label Content="Номер услуги" 
-                           FontSize="24"/>
-                <TextBox x:Name="tbKodService" FontSize="22"/>
-
-                <Label Content="Услуга" 
-                           FontSize="24"/>
-                <TextBox x:Name="tbNameService" FontSize="22"/>
-                <TextBlock Text="Цена" 
-                           FontSize="24"/>
-                <TextBox x:Name="tbPriceService" FontSize="22"/>
-                <Button x:Name="dntAddService" Content="Добавить" Click="dntAddService_Click"
-                        FontSize="20" Margin="0 10 0 0"/>
-                <Grid>
-                    <Button x:Name="btnEditService" Content="Редактировать" Click="btnEditService_Click"
-                        FontSize="20" Margin="0 10 0 0"/>
-                    <Button x:Name="btnEditSecondService" Content="Сохранить" Click="btnEditSecondService_Click" Visibility="Hidden"
-                        FontSize="20" Margin="0 10 0 0"/>
-                </Grid>
-                
-                <Button x:Name="bntDeleteService" Content="Удалить" Click="bntDeleteService_Click"
-                        FontSize="20" Margin="0 10 0 0"/>
-                <Button x:Name="btnBack" Content="Вернуться" Click="btnBack_Click"
-                        FontSize="20" Margin="0 10 0 0"/>
-            </StackPanel>
-            <StackPanel Orientation="Vertical">
-            </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center">
+            <Button Content="Назад" Width="1in" MaxWidth="2in" Margin="0 0.1in 0.1in 0.1in" Click="PreviousPageButton_Click"/>
+            <Button Content="Вперед" Width="1in" MaxWidth="2in" Margin="0 0.1in" Click="NextPageButton_Click"/>
         </StackPanel>
     </Grid>
 </Page>

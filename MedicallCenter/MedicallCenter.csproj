@@ -80,8 +80,14 @@
     <Compile Include="Pages\Page_ResultAddEdit.xaml.cs">
       <DependentUpon>Page_ResultAddEdit.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Page_EditWorkers.xaml.cs">
-      <DependentUpon>Page_EditWorkers.xaml</DependentUpon>
+    <Compile Include="Pages\Page_UsersAddEdit.xaml.cs">
+      <DependentUpon>Page_UsersAddEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Page_WorkersAddEdit.xaml.cs">
+      <DependentUpon>Page_WorkersAddEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Page_ServiceeAddEdit.xaml.cs">
+      <DependentUpon>Page_ServiceeAddEdit.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\WIndows\addService.xaml.cs">
       <DependentUpon>addService.xaml</DependentUpon>
@@ -137,7 +143,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Pages\Page_ServiceeAddEdit.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Pages\Page_Servicee.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Page_UsersAddEdit.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -145,7 +159,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Pages\Page_EditWorkers.xaml">
+    <Page Include="Pages\Page_WorkersAddEdit.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

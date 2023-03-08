@@ -29,6 +29,7 @@ namespace MedicalCenter.Pages
         private int maxpage = 0;
         private int pageSize = 20;
         List<Worker> workers = new List<Worker>();
+
         public Page_Workers()
         {
             InitializeComponent();
@@ -88,12 +89,18 @@ namespace MedicalCenter.Pages
         private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Worker worker = DataGridWorkers.SelectedValue as Worker;
-            Manager.frame.Navigate(new Page_EditWorkers(worker));
+            Manager.frame.Navigate(new Page_WorkersAddEdit(worker));
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             Manager.frame.GoBack();
+        }
+
+        private void btnAddEditWorker_Click(object sender, RoutedEventArgs e)
+        {
+            Worker worker = new Worker();
+            Manager.frame.Navigate(new Page_WorkersAddEdit(worker));
         }
     }
 }

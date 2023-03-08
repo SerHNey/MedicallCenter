@@ -23,102 +23,82 @@ namespace MedicalCenter.Pages
     /// </summary>
     public partial class Page_Users : Page
     {
+        private int pageNumber = 0;
+        private int maxpage = 0;
+        private int pageSize = 20;
+        List<User> users = new List<User>();
         User currentuser = new User();
         public Page_Users()
         {
             InitializeComponent();
-            SaveChang();
+            users = CurrentData.users;
+            maxpage = users.Count / pageSize;
+            DisplayDataInGrid();
         }
+        private void DisplayDataInGrid()
+        {
+            var currentPageData = users.Skip(pageNumber * pageSize).Take(pageSize); // отображаем только данные для текущей страницы
+            DataGridUser.ItemsSource = currentPageData; // отображаем данные в DataGrid
+        }
+
+        private void NextPageButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (pageNumber < maxpage)
+            {
+                pageNumber++; // переход на следующую страницу
+                DisplayDataInGrid(); // отображение данных
+            }
+        }
+
+        private void PreviousPageButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (pageNumber > 0)
+            {
+                pageNumber--; // переход на предыдущую страницу
+                DisplayDataInGrid(); // отображение данных
+            }
+        }
+        private void search_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (search.Text == "Поиск")
+                search.Text = "";
+            else if (search.Text == "")
+                search.Text = "Поиск";
+        }
+        private void TBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (search.Text != "" && DataGridUser != null)
+            {
+                users = users.Where(n => n.name.ToLower().Contains(search.Text.ToLower())).ToList();
+                DataGridUser.ItemsSource = users;
+                maxpage = users.Count / pageSize;
+            }
+            else
+            {
+                if (DataGridUser != null)
+                {
+                    users = CurrentData.users;
+                    maxpage = users.Count / pageSize;
+                }
+
+            }
+        }
+
+        private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            User user = DataGridUser.SelectedValue as User;
+            Manager.frame.Navigate(new Page_UsersAddEdit(user));
+        }
+
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
             Manager.frame.Navigate(new Page_Home(CurrentData.worker));
         }
 
-        private void bntDeleteUser_Click(object sender, RoutedEventArgs e)
+        private void btnAddEditUser_Click(object sender, RoutedEventArgs e)
         {
-            var userForDelete = DataGridUser.SelectedItems.Cast<User>().ToList();
-            if(MessageBox.Show($"Вы точно хотите удалить следующие {userForDelete} записи","Внимание",
-                MessageBoxButton.YesNo, MessageBoxImage.Question)== MessageBoxResult.Yes)
-            {
-                try
-                {
-                    CurrentData.db.User.RemoveRange(userForDelete);
-                    SaveChang();
-                }catch(Exception ex)
-                {
-                    MessageBox.Show(ex.ToString());
-                }
-            }
-        }
-
-        private void btnAddUser_Click(object sender, RoutedEventArgs e)
-        {
-            if (GetData())
-            {
-                CurrentData.db.User.Add(currentuser);
-                SaveChang();
-                MessageBox.Show("Запись успешно добавлена");
-            }
-
-        }
-
-        private void btnEditUser_Click(object sender, RoutedEventArgs e)
-        {
-            if(DataGridUser.SelectedItem != null)
-            {
-                btnAddUser.IsEnabled = false;
-                currentuser = DataGridUser.SelectedItem as User;
-                tbNameUser.Text = currentuser.name;
-                tbLoginUser.Text = currentuser.login;
-                tbPasswordUser.Text = currentuser.password;
-                tbPolUser.Text = currentuser.pol;
-                tbAgeUser.Text = Convert.ToString(currentuser.age);
-                btnEditUser.Visibility = Visibility.Hidden;
-                btnSaveUser.Visibility = Visibility.Visible;
-            }
-        }
-
-        private void btnSaveUser_Click(object sender, RoutedEventArgs e)
-        {
-            if (GetData())
-            {
-                CurrentData.db.User.AddOrUpdate(currentuser);
-                SaveChang();
-                MessageBox.Show("Запись успешно добавлена");
-                btnEditUser.Visibility = Visibility.Visible;
-                btnSaveUser.Visibility = Visibility.Hidden;
-            }
-        }
-        private bool GetData()
-        {
-            StringBuilder stringBuilder = new StringBuilder();
-            if (tbNameUser.Text.Length < 0)
-                stringBuilder.Append("Поле имя: пусто\n");
-            if (tbLoginUser.Text.Length < 0)
-                stringBuilder.Append("Поле логин: пусто\n");
-            if (tbPasswordUser.Text.Length < 0)
-                stringBuilder.Append("Поле пароль: пусто\n");
-            if (tbPolUser.Text.Length < 0)
-                stringBuilder.Append("Поле пол: пусто\n");
-            if (tbAgeUser.Text.Length < 0)
-                stringBuilder.Append("Поле возраст: пусто\n");
-            if (stringBuilder.ToString() == "")
-            {
-
-                currentuser.name = tbNameUser.Text;
-                currentuser.login = tbLoginUser.Text;
-                currentuser.password = tbPasswordUser.Text;
-                currentuser.pol = tbPolUser.Text;
-                currentuser.age =Convert.ToInt16(tbAgeUser.Text);
-                return true;
-            }
-            return false;
-        }
-        private void SaveChang()
-        {
-            CurrentData.db.SaveChanges();
-            DataGridUser.ItemsSource = CurrentData.db.User.ToList();
+            Manager.frame.Navigate(new Page_UsersAddEdit(currentuser));
         }
     }
 }
