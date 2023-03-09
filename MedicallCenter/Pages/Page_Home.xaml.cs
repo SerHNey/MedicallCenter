@@ -14,7 +14,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MedicalCenter.Pages;
 using MedicallCenter;
+using MedicallCenter.Pages;
 using MedicallCenter.Clasees;
+
 
 
 namespace MedicalCenter.Pages
@@ -29,6 +31,8 @@ namespace MedicalCenter.Pages
             InitializeComponent();
             GetInfoWorker(worker);
         }
+
+
 
         private void button_service_Click(object sender, RoutedEventArgs e)
         {
@@ -59,6 +63,11 @@ namespace MedicalCenter.Pages
                 tbRole.Text = "Пользователь";
             if (worker.type == 3)
                 tbRole.Text = "Лаборант";
+        }
+
+        private void btn_history_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.frame.Navigate(new Page_Historyy());
         }
     }
 }

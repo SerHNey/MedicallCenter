@@ -17,6 +17,7 @@ namespace MedicallCenter.Clasees
         public static List<User> users = new List<User>();
         public static List<Worker> workers = new List<Worker>();
         public static List<Type> types = new List<Type>();
+        public static List<HistoryHot> historyHots = new List<HistoryHot>();
         public static Worker worker;
 
         public static void StartTimer()

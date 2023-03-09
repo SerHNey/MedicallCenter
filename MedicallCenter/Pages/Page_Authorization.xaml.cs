@@ -51,6 +51,20 @@ namespace MedicalCenter.Pages
             
         }
 
+        private void AddToHistory(Worker worker)
+        {
+
+            HistoryHot historyHot = new HistoryHot();
+            historyHot.login = worker.login;
+            historyHot.name = worker.name;
+            historyHot.role = worker.Type1.id;
+            historyHot.data = DateTime.Now;
+            historyHot.block = "Нет";
+            CurrentData.db.HistoryHot.Add(historyHot);
+            CurrentData.db.SaveChanges();
+        }
+
+
         private void bLogin_Click(object sender, RoutedEventArgs e)
         {
             string login = tbLogin.Text;
@@ -64,6 +78,7 @@ namespace MedicalCenter.Pages
                         CurrentData.worker = worker;
                         Manager.frame.Navigate(new Page_Home(worker));
                         isAuth= true;
+                    AddToHistory(worker);
                         break;
                 }
             }
