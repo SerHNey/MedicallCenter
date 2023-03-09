@@ -27,7 +27,8 @@ namespace MedicalCenter.Pages
         public Page_ServiceeAddEdit(Service service)
         {
             InitializeComponent();
-            SaveChang();
+            currentServis = service;
+            OutInfoEditService();
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -42,17 +43,12 @@ namespace MedicalCenter.Pages
             if (GetData())
             {
                 CurrentData.db.Service.Add(currentServis);
-                SaveChang();
+                CurrentData.db.SaveChanges();
+                Manager.frame.Navigate(new Page_Servicee());
                 MessageBox.Show("Запись успешно добавлена");
-                tbNameService.Text = null;
-                tbPriceService.Text = null;
             }
         }
 
-        private void SaveChang()
-        {
-            CurrentData.db.SaveChanges();
-        }
 
         private bool GetData()
         {
@@ -85,9 +81,7 @@ namespace MedicalCenter.Pages
 
         private void btnEditService_Click(object sender, RoutedEventArgs e)
         {
-                OutInfoEditService();
-                btnEditSecondService.Visibility = Visibility.Visible;
-                dntAddService.IsEnabled = IsEnabled.Equals(false);
+               
         }
 
         private void btnEditSecondService_Click(object sender, RoutedEventArgs e)
@@ -95,13 +89,8 @@ namespace MedicalCenter.Pages
             if (GetData())
             {
                 CurrentData.db.Service.AddOrUpdate(currentServis);
-                SaveChang();
-                tbKodService.Text = null;
-                tbNameService.Text = null;
-                tbPriceService.Text = null;
+                CurrentData.db.SaveChanges();
                 MessageBox.Show("Запись успешно изменена");
-                btnEditSecondService.Visibility = Visibility.Hidden;
-                dntAddService.IsEnabled = IsEnabled.Equals(true);
             }
         }
     }

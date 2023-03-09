@@ -23,7 +23,7 @@
             <StackPanel Grid.Column="0" Orientation="Vertical" Margin="10 0 10 0">
                 <TextBlock Text="Имя" 
                            FontSize="24"/>
-                <TextBox x:Name="tbNameUser" FontSize="22"/>
+                <TextBox x:Name="tbNameUser" FontSize="22" ToolTip="ФИО"/>
                 <TextBlock Text="Логин" 
                            FontSize="24"/>
                 <TextBox x:Name="tbLoginUser" FontSize="22"/>
@@ -34,7 +34,7 @@
             <StackPanel Grid.Column="1" Orientation="Vertical" Margin="10 0 10 0">
                 <TextBlock Text="Пол" 
                            FontSize="24"/>
-                <TextBox x:Name="tbPolUser" FontSize="22"/>
+                <TextBox x:Name="tbPolUser" FontSize="22" ToolTip="М или Ж"/>
                 <TextBlock Text="Возраст" 
                            FontSize="24"/>
                 <TextBox x:Name="tbAgeUser" FontSize="22"/>

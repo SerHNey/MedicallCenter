@@ -24,6 +24,7 @@ namespace MedicalCenter.Pages
     public partial class Page_Result : Page
     {
         private Result currentresult = new Result();
+
         private int pageNumber = 0;
         private int maxpage = 0;
         private int pageSize = 20;
@@ -33,7 +34,8 @@ namespace MedicalCenter.Pages
         {
             InitializeComponent();
 
-            results = CurrentData.results;
+            //results = CurrentData.results;
+            results = CurrentData.db.Result.ToList();
             maxpage = results.Count / pageSize;
             DisplayDataInGrid();
         }
@@ -45,6 +47,8 @@ namespace MedicalCenter.Pages
 
         private void DisplayDataInGrid()
         {
+            //DataGridResult.ItemsSource = CurrentData.results;
+            DataGridResult.ItemsSource = CurrentData.db.Result.ToList();
             var currentPageData = results.Skip(pageNumber * pageSize).Take(pageSize); // отображаем только данные для текущей страницы
             DataGridResult.ItemsSource = currentPageData; // отображаем данные в DataGrid
         }
@@ -94,8 +98,8 @@ namespace MedicalCenter.Pages
 
         private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            Worker worker = DataGridResult.SelectedValue as Worker;
-            Manager.frame.Navigate(new Page_ResultAddEdit(currentresult));
+            Result result= DataGridResult.SelectedValue as Result;
+            Manager.frame.Navigate(new Page_ResultAddEdit(result));
         }
 
         private void btnDeleteResult_Click(object sender, RoutedEventArgs e)
@@ -106,9 +110,12 @@ namespace MedicalCenter.Pages
             {
                 try
                 {
-                    EntitiesMedical.GetEntities().Result.RemoveRange(resultForDelete);
-                    SaveChang();
-                }catch(Exception ex)
+                    CurrentData.db.Result.RemoveRange(resultForDelete);
+                    CurrentData.db.SaveChanges();
+                    DataGridResult.ItemsSource = CurrentData.db.Result.ToList();
+                    //DataGridResult.ItemsSource = CurrentData.results;
+                }
+                catch(Exception ex)
                 {
                     MessageBox.Show(ex.ToString());
                 }
@@ -120,12 +127,6 @@ namespace MedicalCenter.Pages
             if (DataGridResult.SelectedItem != null)
                 currentresult = DataGridResult.SelectedItem as Result;
             Manager.frame.Navigate(new Page_ResultAddEdit(currentresult));
-        }
-
-        private void SaveChang()
-        {
-            CurrentData.db.SaveChanges();
-            DataGridResult.ItemsSource = CurrentData.db.Result.ToList();
         }
 
         private void bntAddResult_Click(object sender, RoutedEventArgs e)

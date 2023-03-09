@@ -27,7 +27,8 @@ namespace MedicalCenter.Pages
         public Page_UsersAddEdit(User user)
         {
             InitializeComponent();
-            SaveChang();
+            currentuser = user;
+            InputDate();
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -40,25 +41,25 @@ namespace MedicalCenter.Pages
         {
             if (GetData())
             {
-                CurrentData.db.User.Add(currentuser);
-                SaveChang();
+                CurrentData.db.User.AddOrUpdate(currentuser);
+                CurrentData.db.SaveChanges();
                 MessageBox.Show("Запись успешно добавлена");
             }
 
         }
+        private void InputDate()
+        {
+            tbNameUser.Text = currentuser.name;
+            tbLoginUser.Text = currentuser.login;
+            tbPasswordUser.Text = currentuser.password;
+            tbPolUser.Text = currentuser.pol;
+            tbAgeUser.Text = Convert.ToString(currentuser.age);
+        }
+
 
         private void btnEditUser_Click(object sender, RoutedEventArgs e)
         {
 
-                btnAddUser.IsEnabled = false;
-                //currentuser = DataGridUser.SelectedItem as User;
-                tbNameUser.Text = currentuser.name;
-                tbLoginUser.Text = currentuser.login;
-                tbPasswordUser.Text = currentuser.password;
-                tbPolUser.Text = currentuser.pol;
-                tbAgeUser.Text = Convert.ToString(currentuser.age);
-                btnEditUser.Visibility = Visibility.Hidden;
-                btnSaveUser.Visibility = Visibility.Visible;
         }
 
         private void btnSaveUser_Click(object sender, RoutedEventArgs e)
@@ -66,40 +67,53 @@ namespace MedicalCenter.Pages
             if (GetData())
             {
                 CurrentData.db.User.AddOrUpdate(currentuser);
-                SaveChang();
+                CurrentData.db.SaveChanges();
                 MessageBox.Show("Запись успешно добавлена");
-                btnEditUser.Visibility = Visibility.Visible;
-                btnSaveUser.Visibility = Visibility.Hidden;
             }
         }
         private bool GetData()
         {
-            StringBuilder stringBuilder = new StringBuilder();
-            if (tbNameUser.Text.Length < 0)
-                stringBuilder.Append("Поле имя: пусто\n");
-            if (tbLoginUser.Text.Length < 0)
-                stringBuilder.Append("Поле логин: пусто\n");
-            if (tbPasswordUser.Text.Length < 0)
-                stringBuilder.Append("Поле пароль: пусто\n");
-            if (tbPolUser.Text.Length < 0)
-                stringBuilder.Append("Поле пол: пусто\n");
-            if (tbAgeUser.Text.Length < 0)
-                stringBuilder.Append("Поле возраст: пусто\n");
-            if (stringBuilder.ToString() == "")
+            try
             {
+                StringBuilder stringBuilder = new StringBuilder();
+                if (tbNameUser.Text == "")
+                {
+                    stringBuilder.Append("Поле имя: пусто\n");
+                    tbNameUser.BorderBrush = new SolidColorBrush(Colors.Red);
+                }
+                if (tbLoginUser.Text == "")
+                {
+                    stringBuilder.Append("Поле логин: пусто\n");
+                    tbLoginUser.BorderBrush = new SolidColorBrush(Colors.Red);
+                }
+                if (tbPasswordUser.Text == "")
+                {
+                    stringBuilder.Append("Поле пароль: пусто\n");
+                    tbPasswordUser.BorderBrush = new SolidColorBrush(Colors.Red);
+                }
+                if (tbPolUser.Text == "")
+                {
+                    stringBuilder.Append("Поле пол: пусто\n");
+                    tbPolUser.BorderBrush = new SolidColorBrush(Colors.Red);
+                }
+                if (tbAgeUser.Text == "")
+                {
+                    stringBuilder.Append("Поле возраст: пусто\n");
+                    tbAgeUser.BorderBrush = new SolidColorBrush(Colors.Red);
+                }
 
+                MessageBox.Show(stringBuilder.ToString());
                 currentuser.name = tbNameUser.Text;
                 currentuser.login = tbLoginUser.Text;
                 currentuser.password = tbPasswordUser.Text;
                 currentuser.pol = tbPolUser.Text;
-                currentuser.age =Convert.ToInt16(tbAgeUser.Text);
+                currentuser.age = Convert.ToInt16(tbAgeUser.Text);
                 return true;
+            }catch(Exception ex)
+            {
+                return false;
             }
-            return false;
         }
-        private void SaveChang()
-        {
-            CurrentData.db.SaveChanges();
-        }
+
     }
 }

@@ -14,7 +14,7 @@
             <RowDefinition Height="0.2*" MaxHeight="0.8in"/>
         </Grid.RowDefinitions>
         <Button Content="На главную" HorizontalAlignment="Left" Margin="10" Padding="10 0" Click="btnBack_Click"/>
-        <Button Content="Удалить" HorizontalAlignment="Right" Margin="10" Padding="10 0" />
+        <Button Content="Удалить" HorizontalAlignment="Right" Margin="10" Padding="10 0" Click="btnDeleteUser_Click"/>
         <Button Content="Добавить" HorizontalAlignment="Right" Margin="10 10 90 10" Padding="10 0" Click="btnAddEditUser_Click" />
         <TextBox x:Name="search" Text="Поиск" Style="{DynamicResource TextBoxStyle2}" Margin="2in 0.1in" Padding="10 0" GotFocus="search_GotFocus" LostFocus="search_GotFocus" TextChanged="TBoxSearch_TextChanged"/>
         <DataGrid x:Name="DataGridUser" Grid.Row="1" AutoGenerateColumns="False" HorizontalGridLinesBrush="#045C70" VerticalGridLinesBrush="#045C70" IsReadOnly="True" Style="{DynamicResource DataGridStyle1}">

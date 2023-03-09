@@ -28,6 +28,7 @@ namespace MedicalCenter.Pages
         private int pageSize = 20;
         List<User> users = new List<User>();
         User currentuser = new User();
+
         public Page_Users()
         {
             InitializeComponent();
@@ -35,6 +36,7 @@ namespace MedicalCenter.Pages
             maxpage = users.Count / pageSize;
             DisplayDataInGrid();
         }
+
         private void DisplayDataInGrid()
         {
             var currentPageData = users.Skip(pageNumber * pageSize).Take(pageSize); // отображаем только данные для текущей страницы
@@ -58,6 +60,7 @@ namespace MedicalCenter.Pages
                 DisplayDataInGrid(); // отображение данных
             }
         }
+
         private void search_GotFocus(object sender, RoutedEventArgs e)
         {
             if (search.Text == "Поиск")
@@ -99,6 +102,26 @@ namespace MedicalCenter.Pages
         private void btnAddEditUser_Click(object sender, RoutedEventArgs e)
         {
             Manager.frame.Navigate(new Page_UsersAddEdit(currentuser));
+        }
+
+        private void btnDeleteUser_Click(object sender, RoutedEventArgs e)
+        {
+            var userForDelete = DataGridUser.SelectedItems.Cast<User>().ToList();
+            if (MessageBox.Show($"Вы точно хотите удалить следующие {userForDelete} записи", "Внимание",
+                MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    CurrentData.db.User.RemoveRange(userForDelete);
+                    CurrentData.db.SaveChanges();
+                    DataGridUser.ItemsSource = CurrentData.db.User.ToList();
+                    //DataGridResult.ItemsSource = CurrentData.results;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+            }
         }
     }
 }

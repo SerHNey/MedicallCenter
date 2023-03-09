@@ -23,15 +23,16 @@ namespace MedicalCenter.Pages
     /// </summary>
     public partial class Page_Servicee : Page
     {
+        private Service currentServis = new Service();
         private int pageNumber = 0;
         private int maxpage = 0;
         private int pageSize = 20;
         List<Service> services = new List<Service>();
-        private Service currentServis = new Service();
+
         public Page_Servicee()
         {
             InitializeComponent();
-            services = CurrentData.services;
+            services = CurrentData.db.Service.ToList();
             maxpage = services.Count / pageSize;
             DisplayDataInGrid();
         }
@@ -91,10 +92,9 @@ namespace MedicalCenter.Pages
 
         private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            Worker worker = DataGridService.SelectedValue as Worker;
-            Manager.frame.Navigate(new Page_ServiceeAddEdit(currentServis));
+            Service service = DataGridService.SelectedValue as Service;
+            Manager.frame.Navigate(new Page_ServiceeAddEdit(service));
         }
-
 
         private void bntDeleteService_Click(object sender, RoutedEventArgs e)
         {
@@ -105,7 +105,8 @@ namespace MedicalCenter.Pages
                 try
                 {
                     CurrentData.db.Service.RemoveRange(serviceForDelete);
-                    
+                    CurrentData.db.SaveChanges();
+                    DisplayDataInGrid();
                     MessageBox.Show("Записи успешно удалены");
                 }
                 catch (Exception ex)

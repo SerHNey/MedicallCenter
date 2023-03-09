@@ -32,7 +32,7 @@ namespace MedicalCenter.Pages
             ComboUser112.ItemsSource = CurrentData.db.User.ToList();
             ComboWorker.ItemsSource= CurrentData.db.Worker.ToList();
             ComboService.ItemsSource= CurrentData.db.Service.ToList();
-
+            InputDate();
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -96,6 +96,7 @@ namespace MedicalCenter.Pages
                 CurrentData.db.Result.Add(currentresult);
                 SaveChang();
                 MessageBox.Show("Запись успешно добавлена");
+                Manager.frame.Navigate(new Page_Result());
             }
         }
 
