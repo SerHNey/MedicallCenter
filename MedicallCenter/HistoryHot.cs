@@ -12,21 +12,15 @@ namespace MedicallCenter
     using System;
     using System.Collections.Generic;
     
-    public partial class Type
+    public partial class HistoryHot
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Type()
-        {
-            this.Worker = new HashSet<Worker>();
-            this.HistoryHot = new HashSet<HistoryHot>();
-        }
-    
         public int id { get; set; }
-        public string role { get; set; }
+        public Nullable<System.DateTime> data { get; set; }
+        public string login { get; set; }
+        public string name { get; set; }
+        public Nullable<int> role { get; set; }
+        public string block { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Worker> Worker { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HistoryHot> HistoryHot { get; set; }
+        public virtual Type Type { get; set; }
     }
 }

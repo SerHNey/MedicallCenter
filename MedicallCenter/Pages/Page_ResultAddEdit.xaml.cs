@@ -32,7 +32,7 @@ namespace MedicalCenter.Pages
             ComboUser112.ItemsSource = CurrentData.db.User.ToList();
             ComboWorker.ItemsSource= CurrentData.db.Worker.ToList();
             ComboService.ItemsSource= CurrentData.db.Service.ToList();
-            InputDate();
+            //InputDate();
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -99,8 +99,6 @@ namespace MedicalCenter.Pages
                 Manager.frame.Navigate(new Page_Result());
             }
         }
-
-
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {

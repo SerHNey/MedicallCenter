@@ -37,5 +37,6 @@ namespace MedicallCenter
         public virtual DbSet<Type> Type { get; set; }
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<Worker> Worker { get; set; }
+        public virtual DbSet<HistoryHot> HistoryHot { get; set; }
     }
 }

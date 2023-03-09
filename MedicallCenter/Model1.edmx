@@ -5,6 +5,17 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="HistoryHot">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="data" Type="datetime" />
+          <Property Name="login" Type="varchar" MaxLength="50" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="role" Type="int" />
+          <Property Name="block" Type="varchar" MaxLength="3" />
+        </EntityType>
         <EntityType Name="Result">
           <Key>
             <PropertyRef Name="id" />
@@ -66,6 +77,18 @@
           <Property Name="services" Type="varchar" MaxLength="255" />
           <Property Name="type" Type="int" />
         </EntityType>
+        <Association Name="FK_HistoryHot_Type">
+          <End Role="Type" Type="Self.Type" Multiplicity="0..1" />
+          <End Role="HistoryHot" Type="Self.HistoryHot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="HistoryHot">
+              <PropertyRef Name="role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Result_Service1">
           <End Role="Service" Type="Self.Service" Multiplicity="0..1" />
           <End Role="Result" Type="Self.Result" Multiplicity="*" />
@@ -115,12 +138,17 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Хранилище ModelContainer">
+          <EntitySet Name="HistoryHot" EntityType="Self.HistoryHot" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Result" EntityType="Self.Result" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Type" EntityType="Self.Type" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Worker" EntityType="Self.Worker" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_HistoryHot_Type" Association="Self.FK_HistoryHot_Type">
+            <End Role="Type" EntitySet="Type" />
+            <End Role="HistoryHot" EntitySet="HistoryHot" />
+          </AssociationSet>
           <AssociationSet Name="FK_Result_Service1" Association="Self.FK_Result_Service1">
             <End Role="Service" EntitySet="Service" />
             <End Role="Result" EntitySet="Result" />
@@ -183,6 +211,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="role" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Worker" Relationship="Self.FK_Worker_Type" FromRole="Type" ToRole="Worker" />
+          <NavigationProperty Name="HistoryHot" Relationship="Model.FK_HistoryHot_Type" FromRole="Type" ToRole="HistoryHot" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -282,7 +311,36 @@
             <End Role="Type" EntitySet="Type" />
             <End Role="Worker" EntitySet="Worker" />
           </AssociationSet>
+          <EntitySet Name="HistoryHot" EntityType="Model.HistoryHot" />
+          <AssociationSet Name="FK_HistoryHot_Type" Association="Model.FK_HistoryHot_Type">
+            <End Role="Type" EntitySet="Type" />
+            <End Role="HistoryHot" EntitySet="HistoryHot" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="HistoryHot">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="data" Type="DateTime" Precision="3" />
+          <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="role" Type="Int32" />
+          <Property Name="block" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Type" Relationship="Model.FK_HistoryHot_Type" FromRole="HistoryHot" ToRole="Type" />
+        </EntityType>
+        <Association Name="FK_HistoryHot_Type">
+          <End Type="Model.Type" Role="Type" Multiplicity="0..1" />
+          <End Type="Model.HistoryHot" Role="HistoryHot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="HistoryHot">
+              <PropertyRef Name="role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -353,6 +411,18 @@
                 <ScalarProperty Name="lastenter" ColumnName="lastenter" />
                 <ScalarProperty Name="services" ColumnName="services" />
                 <ScalarProperty Name="type" ColumnName="type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HistoryHot">
+            <EntityTypeMapping TypeName="Model.HistoryHot">
+              <MappingFragment StoreEntitySet="HistoryHot">
+                <ScalarProperty Name="block" ColumnName="block" />
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="data" ColumnName="data" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

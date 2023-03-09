@@ -94,7 +94,7 @@ namespace MedicalCenter.Pages
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            Manager.frame.GoBack();
+            Manager.frame.Navigate(new Page_Home(CurrentData.worker));
         }
 
         private void btnAddEditWorker_Click(object sender, RoutedEventArgs e)
