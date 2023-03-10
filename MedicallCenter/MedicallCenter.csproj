@@ -76,7 +76,6 @@
       <DependentUpon>CaptchaWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Clasees\CurrentData.cs" />
-    <Compile Include="Clasees\SignlnAttempt.cs" />
     <Compile Include="HistoryHot.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

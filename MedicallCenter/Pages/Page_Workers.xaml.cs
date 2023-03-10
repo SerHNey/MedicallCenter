@@ -45,7 +45,8 @@ namespace MedicalCenter.Pages
             DisplayDataInGrid();
         }
         private void DisplayDataInGrid()
-        { 
+        {
+            maxpage = workers.Count / pageSize;
             var currentPageData = workers.Skip(pageNumber * pageSize).Take(pageSize); // отображаем только данные для текущей страницы
             DataGridWorkers.ItemsSource = currentPageData; // отображаем данные в DataGrid
         }
@@ -79,15 +80,14 @@ namespace MedicalCenter.Pages
             if (search.Text != "" && DataGridWorkers != null)
             {
                 workers = workers.Where(n=>n.name.ToLower().Contains(search.Text.ToLower())).ToList();
-                DataGridWorkers.ItemsSource = workers;
-                maxpage = workers.Count / pageSize;
+                DisplayDataInGrid();
             }
             else
             {
                 if (DataGridWorkers != null)
                 {
                     workers = CurrentData.workers;
-                    maxpage = workers.Count / pageSize;
+                    DisplayDataInGrid();
                 }
 
             }
