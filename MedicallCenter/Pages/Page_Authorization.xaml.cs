@@ -25,7 +25,6 @@ namespace MedicalCenter.Pages
     {
         CaptchaWindow captchaWindow;
         private bool isFailedToSignIn;
-        private List<SignInAttempt> signInAttempts = new List<SignInAttempt>();
         public Page_Authorization()
         {
             InitializeComponent();
@@ -85,7 +84,6 @@ namespace MedicalCenter.Pages
             if (!isAuth)
             {
                 MessageBox.Show("Логин или пароль неверен");
-                signInAttempts.Add(new SignInAttempt(tbLogin.Text, DateTime.Now, false));
                 if (captchaWindow.IsPassedCaptcha)
                 {
                     SignInButtonBlock();
