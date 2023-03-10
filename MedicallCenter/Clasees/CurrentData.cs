@@ -26,13 +26,15 @@ namespace MedicallCenter.Clasees
             thread.Start();
         }
 
+
         static void TimerCallback()
         {
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
             Timer timer = new Timer((state) => {
-                MessageBox.Show("Elapsed time: " + stopwatch.Elapsed.Minutes);
+                MessageBox.Show("Прошло времени: " + stopwatch.Elapsed.Minutes+" минут");
             }, null, TimeSpan.Zero, TimeSpan.FromMinutes(10));
+            var time2r = new Timer(state => Environment.Exit(0), null, TimeSpan.FromMinutes(15), TimeSpan.FromMilliseconds(-1));
             while (true) { }
         }
     }

@@ -30,6 +30,10 @@ namespace MedicalCenter.Pages
         {
             InitializeComponent();
             GetInfoWorker(worker);
+            if(worker.Type1.id != 1)
+            {
+                btn_history.Visibility = Visibility.Hidden;
+            }
         }
 
 
