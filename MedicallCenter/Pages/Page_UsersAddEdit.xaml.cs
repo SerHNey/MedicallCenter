@@ -33,7 +33,7 @@ namespace MedicalCenter.Pages
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
-            Manager.frame.Navigate(new Page_Users());
+            Manager.frame.Navigate(new Page_Users(CurrentData.worker));
         }
 
 

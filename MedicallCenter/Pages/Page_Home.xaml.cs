@@ -40,22 +40,22 @@ namespace MedicalCenter.Pages
 
         private void button_service_Click(object sender, RoutedEventArgs e)
         {
-            Manager.frame.Navigate(new Page_Servicee());
+            Manager.frame.Navigate(new Page_Servicee(CurrentData.worker));
         }
 
         private void button_worker_Click(object sender, RoutedEventArgs e)
         {
-            Manager.frame.Navigate(new Page_Workers());
+            Manager.frame.Navigate(new Page_Workers(CurrentData.worker));
         }
 
         private void button_user_Click(object sender, RoutedEventArgs e)
         {
-            Manager.frame.Navigate(new Page_Users());
+            Manager.frame.Navigate(new Page_Users(CurrentData.worker));
         }
 
         private void button_result_Click(object sender, RoutedEventArgs e)
         {
-            Manager.frame.Navigate(new Page_Result());
+            Manager.frame.Navigate(new Page_Result(CurrentData.worker));
         }
 
         private void GetInfoWorker(Worker worker)

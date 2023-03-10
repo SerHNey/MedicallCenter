@@ -30,10 +30,14 @@ namespace MedicalCenter.Pages
         private int pageSize = 20;
         List<Result> results = new List<Result>();
 
-        public Page_Result()
+        public Page_Result(Worker worker)
         {
             InitializeComponent();
-
+            if (worker.Type1.id != 1)
+            {
+                bntAddResult.Visibility = Visibility.Hidden;
+                bntDeleteResult.Visibility = Visibility.Hidden;
+            }
             //results = CurrentData.results;
             results = CurrentData.db.Result.ToList();
             maxpage = results.Count / pageSize;

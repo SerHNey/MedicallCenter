@@ -29,9 +29,15 @@ namespace MedicalCenter.Pages
         private int pageSize = 20;
         List<Service> services = new List<Service>();
 
-        public Page_Servicee()
+        public Page_Servicee(Worker worker)
         {
             InitializeComponent();
+            if (worker.Type1.id != 1)
+            {
+                btnDeleteService.Visibility = Visibility.Hidden;
+                btnAddeditService.Visibility = Visibility.Hidden;
+            }
+
             services = CurrentData.db.Service.ToList();
             maxpage = services.Count / pageSize;
             DisplayDataInGrid();

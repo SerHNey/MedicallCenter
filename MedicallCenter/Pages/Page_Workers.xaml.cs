@@ -30,9 +30,16 @@ namespace MedicalCenter.Pages
         private int pageSize = 20;
         List<Worker> workers = new List<Worker>();
 
-        public Page_Workers()
+        public Page_Workers(Worker worker)
         {
             InitializeComponent();
+
+            if (worker.Type1.id != 1)
+            {
+                btn_deleteWorkers.Visibility = Visibility.Hidden;
+                btn_addeditWorkers.Visibility = Visibility.Hidden;
+                
+            }
             workers = CurrentData.workers;
             maxpage = workers.Count / pageSize;
             DisplayDataInGrid();
@@ -83,6 +90,25 @@ namespace MedicalCenter.Pages
                     maxpage = workers.Count / pageSize;
                 }
 
+            }
+        }
+        private void btnDeleteWorker_Click(object sender, RoutedEventArgs e)
+        {
+            var workerForDelete = DataGridWorkers.SelectedItems.Cast<Worker>().ToList();
+            if (MessageBox.Show($"Вы точно хотите удалить следующие {workerForDelete} записи", "Внимание",
+                MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    CurrentData.db.Worker.RemoveRange(workerForDelete);
+                    CurrentData.db.SaveChanges();
+                    DataGridWorkers.ItemsSource = CurrentData.db.Worker.ToList();
+                    //DataGridResult.ItemsSource = CurrentData.results;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
             }
         }
 

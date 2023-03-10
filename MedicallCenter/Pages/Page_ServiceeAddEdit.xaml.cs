@@ -33,7 +33,7 @@ namespace MedicalCenter.Pages
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
-            Manager.frame.Navigate(new Page_Servicee());
+            Manager.frame.Navigate(new Page_Servicee(CurrentData.worker));
         }
 
         
@@ -44,7 +44,7 @@ namespace MedicalCenter.Pages
             {
                 CurrentData.db.Service.Add(currentServis);
                 CurrentData.db.SaveChanges();
-                Manager.frame.Navigate(new Page_Servicee());
+                Manager.frame.Navigate(new Page_Servicee(CurrentData.worker));
                 MessageBox.Show("Запись успешно добавлена");
             }
         }
