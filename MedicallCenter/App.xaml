@@ -4,6 +4,13 @@
              xmlns:local="clr-namespace:MedicallCenter"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+        <Style x:Key="WinAll" TargetType="{x:Type Page}">
+    <Setter Property="TextElement.FontFamily"
+        Value="Comic Sans MS" />
+    <Setter Property="FontSize"
+        Value="14" />
+            <Setter Property="Background" Value="#FF76E383"/>
+        </Style>
         <Style x:Key="ComboBoxEditableTextBox" TargetType="{x:Type TextBox}">
             <Setter Property="OverridesDefaultStyle" Value="true"/>
             <Setter Property="AllowDrop" Value="true"/>
@@ -22,7 +29,7 @@
         </Style>
         <Style x:Key="ToggleButtonStyle3" TargetType="{x:Type ToggleButton}">
             <Setter Property="Background" Value="White"/>
-            <Setter Property="BorderBrush" Value="#045C70"/>
+            <Setter Property="BorderBrush" Value="#FF498C51"/>
             <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -63,7 +70,7 @@
                         </ScrollViewer>
                     </Border>
                 </Popup>
-                <ToggleButton x:Name="toggleButton" Background="#045C70" Grid.Column="2" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Style="{DynamicResource ToggleButtonStyle3}">
+                <ToggleButton x:Name="toggleButton" Background="#FF498C51" Grid.Column="2" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Style="{DynamicResource ToggleButtonStyle3}">
                     <Image Source="/arrow.png" Stretch="Uniform"/>
                 </ToggleButton>
                 <Border x:Name="border" BorderBrush="#606060" BorderThickness="1 1 0 1" CornerRadius="5 0 0 5">
@@ -86,14 +93,14 @@
                                     <Rectangle x:Name="opaqueRect" Fill="{Binding Background, ElementName=dropDownBorder}" Height="{Binding ActualHeight, ElementName=dropDownBorder}" Width="{Binding ActualWidth, ElementName=dropDownBorder}"/>
                                 </Canvas>
                                 <StackPanel Grid.ColumnSpan="2">
-                                    <Button Content="+" Style="{DynamicResource ButtonStyle1}" x:Name="add_locBtn"  Background="#045C70" Click="add_locBtn_Click" Tag="{Binding RelativeSource={RelativeSource TemplatedParent}}" />
+                                    <Button Content="+" Style="{DynamicResource ButtonStyle1}" x:Name="add_locBtn"  Background="#FF498C51" Click="add_locBtn_Click" Tag="{Binding RelativeSource={RelativeSource TemplatedParent}}" />
                                     <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                                 </StackPanel>
                             </Grid>
                         </ScrollViewer>
                     </Border>
                 </Popup>
-                <ToggleButton x:Name="toggleButton" Background="#045C70" Grid.Column="2" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Style="{DynamicResource ToggleButtonStyle3}">
+                <ToggleButton x:Name="toggleButton" Background="#FF498C51" Grid.Column="2" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Style="{DynamicResource ToggleButtonStyle3}">
                     <Image Source="/arrow.png" Stretch="Uniform"/>
                 </ToggleButton>
                 <Border Grid.Column="1" Background="red">
@@ -110,7 +117,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Thumb}">
-                        <Rectangle Fill="#045C70" RadiusY="5" RadiusX="10"></Rectangle>
+                        <Rectangle Fill="#FF498C51" RadiusY="5" RadiusX="10"></Rectangle>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -134,7 +141,7 @@
         <Style x:Key="DataGridStyle1" TargetType="{x:Type DataGrid}">
             <Setter Property="Background" Value="White"/>
             <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
-            <Setter Property="BorderBrush" Value="#3F3F3F"/>
+            <Setter Property="BorderBrush" Value="#FF498C51"/>
             <Setter Property="BorderThickness" Value="2"/>
             <Setter Property="Margin" Value="10 0"/>
             <Setter Property="CanUserResizeColumns" Value="True" />
@@ -236,7 +243,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="#045C70" BorderThickness="0 1" SnapsToDevicePixels="true">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="#FF498C51" BorderThickness="0 1" SnapsToDevicePixels="true">
                             <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                         </Border>
                     </ControlTemplate>
@@ -299,7 +306,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type TextBox}">
-                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="5" BorderBrush="#045C70" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="5" BorderBrush="#FF498C51" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
                             <ScrollViewer  x:Name="PART_ContentHost" HorizontalScrollBarVisibility="Hidden" Margin="0" VerticalScrollBarVisibility="Hidden"  VerticalAlignment="Center" BorderThickness="0"/>
                         </Border>
                     </ControlTemplate>
@@ -318,7 +325,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Border x:Name="border" CornerRadius="10" Background="{TemplateBinding Background}" BorderBrush="#045C70" BorderThickness="3.5" SnapsToDevicePixels="true">
+                        <Border x:Name="border" CornerRadius="10" Background="{TemplateBinding Background}" BorderBrush="#FF498C51" BorderThickness="3.5" SnapsToDevicePixels="true">
                             <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                         </Border>
                     </ControlTemplate>

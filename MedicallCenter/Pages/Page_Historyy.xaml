@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:MedicallCenter.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Page_Historyy">
+      Title="Page_Historyy"
+      Style="{StaticResource WinAll}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.2*" MaxHeight="0.8in"/>
@@ -18,7 +19,7 @@
         <DataGrid x:Name="DataGridHistory" Grid.Row="1" AutoGenerateColumns="False" HorizontalGridLinesBrush="#045C70" VerticalGridLinesBrush="#045C70" IsReadOnly="True" Style="{DynamicResource DataGridStyle1}">
             <FrameworkElement.Resources>
                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="LightGray"/>
-                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="#045C70"/>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="#FF498C51"/>
                 <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}" Color="BLue"/>
             </FrameworkElement.Resources>
             <DataGrid.RowStyle>
@@ -38,7 +39,7 @@
                                 <Setter.Value>
                                     <ControlTemplate TargetType="DataGridColumnHeader">
                                         <Border x:Name="border"
-                              BorderBrush="#045C70"
+                              BorderBrush="#FF498C51"
                               BorderThickness="0 2 2 2"
                               Background="White">
                                             <ContentPresenter HorizontalAlignment="Center"/>
@@ -60,7 +61,7 @@
                                 <Setter.Value>
                                     <ControlTemplate TargetType="DataGridColumnHeader">
                                         <Border x:Name="border"
-                              BorderBrush="#045C70"
+                              BorderBrush="#FF498C51"
                               BorderThickness="0 2 2 2"
                               Background="White">
                                             <ContentPresenter HorizontalAlignment="Center"/>
@@ -82,7 +83,7 @@
                                 <Setter.Value>
                                     <ControlTemplate TargetType="DataGridColumnHeader">
                                         <Border x:Name="border"
-                              BorderBrush="#045C70"
+                              BorderBrush="#FF498C51"
                               BorderThickness="0 2 2 2"
                               Background="White">
                                             <ContentPresenter HorizontalAlignment="Center"/>
@@ -104,7 +105,7 @@
                                 <Setter.Value>
                                     <ControlTemplate TargetType="DataGridColumnHeader">
                                         <Border x:Name="border"
-                              BorderBrush="#045C70"
+                              BorderBrush="#FF498C51"
                               BorderThickness="0 2 2 2"
                               Background="White">
                                             <ContentPresenter HorizontalAlignment="Center"/>
@@ -126,7 +127,7 @@
                                 <Setter.Value>
                                     <ControlTemplate TargetType="DataGridColumnHeader">
                                         <Border x:Name="border"
-                              BorderBrush="#045C70"
+                              BorderBrush="#FF498C51"
                               BorderThickness="0 2 2 2"
                               Background="White">
                                             <ContentPresenter HorizontalAlignment="Center"/>
@@ -148,7 +149,7 @@
                                 <Setter.Value>
                                     <ControlTemplate TargetType="DataGridColumnHeader">
                                         <Border x:Name="border"
-                              BorderBrush="#045C70"
+                              BorderBrush="#FF498C51"
                               BorderThickness="0 2 2 2"
                               Background="White">
                                             <ContentPresenter HorizontalAlignment="Center"/>

@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:MedicalCenter.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Servicee">
+      Title="Servicee"
+      Style="{StaticResource WinAll}">
 
     <Grid>
         <Grid.ColumnDefinitions>

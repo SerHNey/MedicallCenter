@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:MedicalCenter.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Result">
+      Title="Result"
+      Style="{StaticResource WinAll}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.2*" MaxHeight="0.8in"/>
@@ -17,10 +18,10 @@
         <Button x:Name="bntDeleteResult" Content="Удалить" HorizontalAlignment="Right" Margin="10" Padding="10 0" Click="btnDeleteResult_Click" />
         <Button x:Name="bntAddResult" Content="Добавить" HorizontalAlignment="Right" Margin="10 10 90 10" Padding="10 0" Click="bntAddResult_Click" />
         <TextBox x:Name="search" Text="Поиск" Style="{DynamicResource TextBoxStyle2}" Margin="2in 0.1in" Padding="10 0" GotFocus="search_GotFocus" LostFocus="search_GotFocus" TextChanged="TBoxSearch_TextChanged"/>
-        <DataGrid x:Name="DataGridResult" Grid.Row="1" AutoGenerateColumns="False" HorizontalGridLinesBrush="#045C70" VerticalGridLinesBrush="#045C70" IsReadOnly="True" Style="{DynamicResource DataGridStyle1}">
+        <DataGrid x:Name="DataGridResult" Grid.Row="1" AutoGenerateColumns="False" HorizontalGridLinesBrush="#FF498C51" VerticalGridLinesBrush="#FF498C51" IsReadOnly="True" Style="{DynamicResource DataGridStyle1}">
             <FrameworkElement.Resources>
                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="LightGray"/>
-                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="#045C70"/>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="#FF498C51"/>
                 <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}" Color="BLue"/>
             </FrameworkElement.Resources>
             <DataGrid.RowStyle>
@@ -38,7 +39,7 @@
                                 <Setter.Value>
                                     <ControlTemplate TargetType="DataGridColumnHeader">
                                         <Border x:Name="border"
-                              BorderBrush="#045C70"
+                              BorderBrush="#FF498C51"
                               BorderThickness="2"
                               Background="White"
                               CornerRadius="5 0 0 0" Padding="5,0,5,5">
@@ -61,7 +62,7 @@
                                 <Setter.Value>
                                     <ControlTemplate TargetType="DataGridColumnHeader">
                                         <Border x:Name="border"
-                              BorderBrush="#045C70"
+                              BorderBrush="#FF498C51"
                               BorderThickness="0 2 2 2"
                               Background="White">
                                             <ContentPresenter HorizontalAlignment="Center"/>
@@ -83,7 +84,7 @@
                                 <Setter.Value>
                                     <ControlTemplate TargetType="DataGridColumnHeader">
                                         <Border x:Name="border"
-                              BorderBrush="#045C70"
+                              BorderBrush="#FF498C51"
                               BorderThickness="0 2 2 2"
                               Background="White">
                                             <ContentPresenter HorizontalAlignment="Center"/>
@@ -105,7 +106,7 @@
                                 <Setter.Value>
                                     <ControlTemplate TargetType="DataGridColumnHeader">
                                         <Border x:Name="border"
-                              BorderBrush="#045C70"
+                              BorderBrush="#FF498C51"
                               BorderThickness="0 2 2 2"
                               Background="White">
                                             <ContentPresenter HorizontalAlignment="Center"/>
@@ -127,7 +128,7 @@
                                 <Setter.Value>
                                     <ControlTemplate TargetType="DataGridColumnHeader">
                                         <Border x:Name="border"
-                              BorderBrush="#045C70"
+                              BorderBrush="#FF498C51"
                               BorderThickness="0 2 2 2"
                               Background="White">
                                             <ContentPresenter HorizontalAlignment="Center"/>
