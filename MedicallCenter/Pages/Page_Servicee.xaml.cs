@@ -99,9 +99,11 @@ namespace MedicalCenter.Pages
 
         private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            Service service = DataGridService.SelectedValue as Service;
             if (CurrentData.worker.Type1.id == 1)
+            {
+                Service service = DataGridService.SelectedValue as Service;
                 Manager.frame.Navigate(new Page_ServiceeAddEdit(service));
+            }
         }
 
         private void bntDeleteService_Click(object sender, RoutedEventArgs e)

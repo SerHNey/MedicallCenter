@@ -28,15 +28,17 @@ namespace MedicalCenter.Pages
         {
             InitializeComponent();
             currentServis = service;
-            OutInfoEditService();
+            if (currentServis.id != 0)
+            {
+                OutInfoEditService();
+                btnEditService.Visibility = Visibility.Visible;
+            }
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
             Manager.frame.Navigate(new Page_Servicee(CurrentData.worker));
         }
-
-        
 
         private void dntAddService_Click(object sender, RoutedEventArgs e)
         {
@@ -81,11 +83,6 @@ namespace MedicalCenter.Pages
 
         private void btnEditService_Click(object sender, RoutedEventArgs e)
         {
-               
-        }
-
-        private void btnEditSecondService_Click(object sender, RoutedEventArgs e)
-        {
             if (GetData())
             {
                 CurrentData.db.Service.AddOrUpdate(currentServis);
@@ -93,5 +90,6 @@ namespace MedicalCenter.Pages
                 MessageBox.Show("Запись успешно изменена");
             }
         }
+
     }
 }
