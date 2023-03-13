@@ -29,10 +29,10 @@ namespace MedicalCenter.Pages
         List<User> users = new List<User>();
         User currentuser = new User();
 
-        public Page_Users(Worker worker)
+        public Page_Users()
         {
             InitializeComponent();
-            if (worker.Type1.id != 1)
+            if (CurrentData.worker.Type1.id != 1)
             {
                 btn_DeleteUser.Visibility = Visibility.Hidden;
                 btn_AddEditUser.Visibility = Visibility.Hidden;

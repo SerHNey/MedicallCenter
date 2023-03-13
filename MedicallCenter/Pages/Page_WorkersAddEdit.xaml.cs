@@ -37,7 +37,7 @@ namespace MedicalCenter.Pages
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
-            Manager.frame.Navigate(new Page_Workers(CurrentData.worker));
+            Manager.frame.Navigate(new Page_Workers());
         }
 
         //private void btnAddWorker_Click(object sender, RoutedEventArgs e)
