@@ -83,7 +83,7 @@ namespace MedicalCenter.Pages
         }
         private void TBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (search.Text != "" && DataGridResult != null)
+            if (search.Text != "" && search.Text != "Поиск" && DataGridWorkers != null)
             {
                 results = results.Where(n => n.User.name.ToLower().Contains(search.Text.ToLower())).ToList();
                 DisplayDataInGrid();
@@ -101,10 +101,11 @@ namespace MedicalCenter.Pages
 
         private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-
-            Result result= DataGridResult.SelectedValue as Result;
             if (CurrentData.worker.Type1.id == 1)
+            {
+                Result result = DataGridResult.SelectedValue as Result;
                 Manager.frame.Navigate(new Page_ResultAddEdit(result));
+            }
         }
 
         private void btnDeleteResult_Click(object sender, RoutedEventArgs e)

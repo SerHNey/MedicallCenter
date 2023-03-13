@@ -76,7 +76,7 @@ namespace MedicalCenter.Pages
         }
         private void TBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (search.Text != "" && DataGridUser != null)
+            if (search.Text != "" && search.Text != "Поиск" && DataGridWorkers != null)
             {
                 users = users.Where(n => n.name.ToLower().Contains(search.Text.ToLower())).ToList();
                 DisplayDataInGrid();

@@ -128,7 +128,7 @@
                                 <Setter.Value>
                                     <ControlTemplate TargetType="DataGridColumnHeader">
                                         <Border x:Name="border"
-                              BorderBrush="#FF498C51"
+                              BorderBrush="#045C70"
                               BorderThickness="0 2 2 2"
                               Background="White">
                                             <ContentPresenter HorizontalAlignment="Center"/>

@@ -73,5 +73,14 @@ namespace MedicalCenter.Pages
         {
             Manager.frame.Navigate(new Page_Historyy());
         }
+
+        private void btn_leave_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Вы точно хотите выйти?", "Внимание", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                Manager.frame.Navigate(new Page_Authorization());
+            }
+
+        }
     }
 }
