@@ -104,7 +104,7 @@ namespace MedicalCenter.Pages
                 CurrentData.db.Result.AddOrUpdate(currentresult);
                 SaveChang();
                 MessageBox.Show("Запись успешно отредактирована");
-                Manager.frame.Navigate(new Page_Result(CurrentData.worker));
+                Manager.frame.Navigate(new Page_Result());
             }
         }
     }
