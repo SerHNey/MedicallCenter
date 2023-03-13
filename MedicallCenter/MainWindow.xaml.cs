@@ -32,7 +32,6 @@ namespace MedicallCenter
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Manager.StartTimer();
             CurrentData.db = new EntitiesMedical();
             CurrentData.results = CurrentData.db.Result.ToList();
             CurrentData.users = CurrentData.db.User.ToList();

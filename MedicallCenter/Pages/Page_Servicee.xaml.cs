@@ -82,15 +82,16 @@ namespace MedicalCenter.Pages
             if (search.Text != "" && DataGridService != null)
             {
                 services = services.Where(n => n.service1.ToLower().Contains(search.Text.ToLower())).ToList();
-                DataGridService.ItemsSource = services;
-                maxpage = services.Count / pageSize;
+                DisplayDataInGrid();
+
+
             }
             else
             {
                 if (DataGridService != null)
                 {
                     services = CurrentData.services;
-                    maxpage = services.Count / pageSize;
+                    DisplayDataInGrid();
                 }
 
             }
