@@ -28,7 +28,12 @@ namespace MedicalCenter.Pages
         {
             InitializeComponent();
             currentuser = user;
-            InputDate();
+
+            if (currentuser.id != 0)
+            {
+                InputDate();
+                btnEditUser.Visibility = Visibility.Visible;
+            }
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -59,16 +64,11 @@ namespace MedicalCenter.Pages
 
         private void btnEditUser_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void btnSaveUser_Click(object sender, RoutedEventArgs e)
-        {
             if (GetData())
             {
                 CurrentData.db.User.AddOrUpdate(currentuser);
                 CurrentData.db.SaveChanges();
-                MessageBox.Show("Запись успешно добавлена");
+                MessageBox.Show("Запись успешно отредактирована");
             }
         }
         private bool GetData()

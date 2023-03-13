@@ -33,11 +33,23 @@ namespace MedicalCenter.Pages
             ComboService.ItemsSource = CurrentData.db.Service.ToList();
             ComboDolgnost.ItemsSource = CurrentData.db.Type.ToList();
             curerentworker = worker;
+            InputData();
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
             Manager.frame.Navigate(new Page_Workers());
+        }
+
+        private void InputData()
+        {
+            tbNameWorker.Text = curerentworker.name;
+            tbLoginWorker.Text = curerentworker.login;
+            tbPasswordWorker.Text = curerentworker.password;
+            tbIpWorker.Text = curerentworker.ip;
+            tbLasneterWorker.Text = curerentworker.lastenter;
+            ComboService.Text = curerentworker.services;
+            ComboDolgnost.Text = curerentworker.Type1.role;
         }
 
         //private void btnAddWorker_Click(object sender, RoutedEventArgs e)
