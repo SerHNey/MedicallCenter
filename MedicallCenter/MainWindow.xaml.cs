@@ -40,5 +40,10 @@ namespace MedicallCenter
             CurrentData.types = CurrentData.db.Type.ToList();
             CurrentData.historyHots = CurrentData.db.HistoryHot.ToList();
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Manager.KillTimer();
+        }
     }
 }

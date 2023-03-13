@@ -16,11 +16,16 @@ namespace MedicalCenter
     class Manager
     {
         public static Frame frame { get; set; }
+        private static Thread thread = new Thread(TimerCallback);
 
         public static void StartTimer()
         {
-            Thread thread = new Thread(TimerCallback);
             thread.Start();
+        }
+
+        public static void KillTimer()
+        {
+            thread.Abort();
         }
 
         static void TimerCallback()

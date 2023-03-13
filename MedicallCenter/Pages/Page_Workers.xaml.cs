@@ -116,7 +116,8 @@ namespace MedicalCenter.Pages
         private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Worker worker = DataGridWorkers.SelectedValue as Worker;
-            Manager.frame.Navigate(new Page_WorkersAddEdit(worker));
+            if (CurrentData.worker.Type1.id == 1)
+                Manager.frame.Navigate(new Page_WorkersAddEdit(worker));
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
