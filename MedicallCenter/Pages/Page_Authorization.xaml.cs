@@ -75,6 +75,7 @@ namespace MedicalCenter.Pages
                 if (worker.login == login && worker.password == password)
                 {
                         CurrentData.worker = worker;
+                        Manager.StartTimer();
                         Manager.frame.Navigate(new Page_Home(worker));
                         isAuth= true;
                     AddToHistory(worker);

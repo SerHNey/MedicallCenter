@@ -33,7 +33,11 @@ namespace MedicalCenter
             }, null, TimeSpan.Zero, TimeSpan.FromMinutes(15));
             while (stopwatch.Elapsed.Hours<1) { }
             CurrentData.worker = null;
-            Manager.frame.Navigate(new Page_Authorization());
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                Manager.frame.Navigate(new Page_Authorization());
+            });
+
         }
     }
 }
