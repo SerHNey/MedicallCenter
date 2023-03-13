@@ -39,8 +39,9 @@
                                     <ControlTemplate TargetType="DataGridColumnHeader">
                                         <Border x:Name="border"
                               BorderBrush="#045C70"
-                              BorderThickness="0 2 2 2"
-                              Background="White">
+                              BorderThickness="2"
+                              Background="White"
+                              CornerRadius="5 0 0 0" Padding="5,0,5,5">
                                             <ContentPresenter HorizontalAlignment="Center"/>
                                         </Border>
                                     </ControlTemplate>
@@ -49,7 +50,7 @@
                         </Style>
                     </DataGridTextColumn.HeaderStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="Дата входа" Binding="{Binding date}" Width="*">
+                <DataGridTextColumn Header="Дата входа" Binding="{Binding data}" Width="*">
                     <DataGridTextColumn.HeaderStyle>
                         <Style TargetType="DataGridColumnHeader">
                             <Setter Property="Background" Value="#0D0D0D"/>
@@ -127,7 +128,7 @@
                                     <ControlTemplate TargetType="DataGridColumnHeader">
                                         <Border x:Name="border"
                               BorderBrush="#045C70"
-                              BorderThickness="0 2 2 2"
+                              BorderThickness="0 2 0 2"
                               Background="White">
                                             <ContentPresenter HorizontalAlignment="Center"/>
                                         </Border>
@@ -142,15 +143,15 @@
                         <Style TargetType="DataGridColumnHeader">
                             <Setter Property="Background" Value="#0D0D0D"/>
                             <Setter Property="BorderBrush" Value="White"/>
-                            <Setter Property="BorderThickness" Value="2"/>
                             <Setter Property="Foreground" Value="Black"/>
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="DataGridColumnHeader">
                                         <Border x:Name="border"
                               BorderBrush="#045C70"
-                              BorderThickness="0 2 2 2"
-                              Background="White">
+                              BorderThickness="2"
+                              Background="White"
+                              CornerRadius="0 5 0 0" Padding="0,0,0,0">
                                             <ContentPresenter HorizontalAlignment="Center"/>
                                         </Border>
                                     </ControlTemplate>
