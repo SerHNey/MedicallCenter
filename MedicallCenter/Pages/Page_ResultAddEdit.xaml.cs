@@ -29,10 +29,12 @@ namespace MedicalCenter.Pages
         {
             InitializeComponent();
             currentresult = currentresult2;
+
             ComboUser112.ItemsSource = CurrentData.db.User.ToList();
             ComboWorker.ItemsSource= CurrentData.db.Worker.ToList();
             ComboService.ItemsSource= CurrentData.db.Service.ToList();
-            //InputDate();
+
+            InputData();
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -41,11 +43,11 @@ namespace MedicalCenter.Pages
         }
 
        
-        private void InputDate()
+        private void InputData()
         {
-            ComboUser112.Text = CurrentData.results.Where(x => x.User.name == currentresult.User.name).FirstOrDefault().User.name;
-            ComboWorker.Text = CurrentData.results.Where(x => x.Worker.name == currentresult.Worker.name).FirstOrDefault().Worker.name;
-            ComboService.Text = CurrentData.results.Where(x => x.Service.service1 == currentresult.Service.service1).FirstOrDefault().Service.service1;
+            ComboUser112.Text = currentresult.User.name;
+            ComboWorker.Text = currentresult.Worker.name;
+            ComboService.Text = currentresult.Service.service1;
             tbResultResult.Text = currentresult.result1;
             tbDateResult.Text = currentresult.date;
         }
@@ -53,7 +55,7 @@ namespace MedicalCenter.Pages
 
         private void btnEditResult_Click(object sender, RoutedEventArgs e)
         {
-            InputDate();
+            InputData();
                // btnEditSecodnResult.Visibility = Visibility.Visible;
         }
 
@@ -97,14 +99,6 @@ namespace MedicalCenter.Pages
                 SaveChang();
                 MessageBox.Show("Запись успешно добавлена");
                 Manager.frame.Navigate(new Page_Result(CurrentData.worker));
-            }
-        }
-
-        private void Grid_Loaded(object sender, RoutedEventArgs e)
-        {
-            if (currentresult.id != 0)
-            {
-                InputDate();
             }
         }
     }

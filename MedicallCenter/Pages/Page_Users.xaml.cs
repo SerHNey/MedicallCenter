@@ -96,7 +96,8 @@ namespace MedicalCenter.Pages
         private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             User user = DataGridUser.SelectedValue as User;
-            Manager.frame.Navigate(new Page_UsersAddEdit(user));
+            if (CurrentData.worker.Type1.id == 1)
+                Manager.frame.Navigate(new Page_UsersAddEdit(user));
         }
 
 

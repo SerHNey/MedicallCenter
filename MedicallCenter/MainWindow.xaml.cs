@@ -32,7 +32,7 @@ namespace MedicallCenter
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            CurrentData.StartTimer();
+            Manager.StartTimer();
             CurrentData.db = new EntitiesMedical();
             CurrentData.results = CurrentData.db.Result.ToList();
             CurrentData.users = CurrentData.db.User.ToList();
@@ -40,6 +40,11 @@ namespace MedicallCenter
             CurrentData.workers = CurrentData.db.Worker.ToList();
             CurrentData.types = CurrentData.db.Type.ToList();
             CurrentData.historyHots = CurrentData.db.HistoryHot.ToList();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Manager.KillTimer();
         }
     }
 }
