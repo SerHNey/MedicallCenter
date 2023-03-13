@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:MedicalCenter.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Home">
+      Title="Home"
+      Style="{StaticResource WinAll}">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -57,6 +58,11 @@
                         Content="История входа"
                         x:Name="btn_history"
                     Click="btn_history_Click"/>
+            <Button Height="35" Width="150" 
+                        Margin="0 25 0 0"
+                        Content="Выйти"
+                        x:Name="btn_leave"
+                    Click="btn_leave_Click"/>
         </StackPanel>
     </Grid>
 </Page>

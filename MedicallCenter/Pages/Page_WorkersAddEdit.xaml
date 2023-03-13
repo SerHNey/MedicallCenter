@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:MedicalCenter.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Workers">
+      Title="Workers"
+      Style="{StaticResource WinAll}">
 
     <Grid>
         <Grid>
@@ -38,10 +39,10 @@
             <StackPanel Grid.Column="2" Orientation="Vertical" Margin="10 0 10 0">
                 <TextBlock Text="Услуги" 
                            FontSize="24"/>
-                <ComboBox x:Name="ComboService" SelectedItem="{Binding Service}" IsEditable="True" IsReadOnly="False" DisplayMemberPath="service1" Template="{DynamicResource ComboBoxTemplate2}"/>
+                <ComboBox x:Name="ComboService" IsEditable="True" IsReadOnly="False" DisplayMemberPath="service1" Template="{DynamicResource ComboBoxTemplate2}"/>
                 <TextBlock Text="Должность" 
                            FontSize="24"/>
-                <ComboBox x:Name="ComboDolgnost" SelectedItem="{Binding Type}" IsEditable="True" IsReadOnly="False" DisplayMemberPath="role" Template="{DynamicResource ComboBoxTemplate}"/>
+                <ComboBox x:Name="ComboDolgnost"  IsEditable="True" IsReadOnly="False" DisplayMemberPath="role" Template="{DynamicResource ComboBoxTemplate}"/>
             </StackPanel>
             <StackPanel Grid.Column="3" Orientation="Vertical" Margin="10 0 10 0">
                 <Button x:Name="btnAddWorker" Content="Добавить" 

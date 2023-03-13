@@ -7,7 +7,8 @@
       xmlns:local="clr-namespace:MedicalCenter.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Servicee">
+      Title="Servicee"
+      Style="{StaticResource WinAll}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.2*" MaxHeight="0.8in"/>
@@ -38,13 +39,15 @@
                     </DataGridTemplateColumn.CellTemplate>
                     <DataGridTemplateColumn.HeaderStyle>
                         <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Background" Value="#0D0D0D"/>
+                            <Setter Property="BorderBrush" Value="White"/>
+                            <Setter Property="BorderThickness" Value="2"/>
                             <Setter Property="Foreground" Value="Black"/>
-                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="DataGridColumnHeader">
                                         <Border x:Name="border"
-                              BorderBrush="#045C70"
+                              BorderBrush="#FF498C51"
                               BorderThickness="2"
                               Background="White"
                               CornerRadius="5 0 0 0" Padding="5,0,5,5">
@@ -87,7 +90,7 @@
                                 <Setter.Value>
                                     <ControlTemplate TargetType="DataGridColumnHeader">
                                         <Border x:Name="border"
-                              BorderBrush="#045C70"
+                              BorderBrush="#FF498C51"
                               BorderThickness="0 2 2 2"
                               Background="White">
                                             <ContentPresenter HorizontalAlignment="Center"/>
@@ -103,7 +106,6 @@
                         <Style TargetType="DataGridColumnHeader">
                             <Setter Property="Background" Value="#0D0D0D"/>
                             <Setter Property="BorderBrush" Value="White"/>
-                            <Setter Property="BorderThickness" Value="2"/>
                             <Setter Property="Foreground" Value="Black"/>
                             <Setter Property="Template">
                                 <Setter.Value>

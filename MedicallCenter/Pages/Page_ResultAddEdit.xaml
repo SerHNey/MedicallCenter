@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:MedicalCenter.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Result">
+      Title="Result"
+      Style="{StaticResource WinAll}">
 
     <Grid>
         <Grid Grid.Row="1">
@@ -37,14 +38,12 @@
                            FontSize="24"/>
                 <TextBox x:Name="tbDateResult" FontSize="22"/>
             </StackPanel>
-            
+
             <StackPanel Grid.Column="3" Orientation="Vertical" Margin="10 0 10 0">
-                <Button x:Name="bntAddResult" Content="Добавить" Click="bntAddResult_Click"
-                        FontSize="20" Margin="0 10 0 0"/>
                 <Grid>
-                    <Button x:Name="btnEditResult" Content="Редактировать" Click="btnEditResult_Click"
+                    <Button x:Name="bntAddResult" Content="Добавить" Click="bntAddResult_Click"
                         FontSize="20" Margin="0 10 0 0"/>
-                    <Button x:Name="btnEditSecodnResult" Content="Сохранить" Visibility="Hidden" Click="btnEditSecodnResult_Click"
+                    <Button x:Name="btnEditResult" Content="Редактировать" Visibility="Hidden" Click="btnEditResult_Click"
                         FontSize="20" Margin="0 10 0 0"/>
                 </Grid>
                 <Button x:Name="btnBack" Content="Вернуться" Click="btnBack_Click"

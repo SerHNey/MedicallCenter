@@ -33,8 +33,11 @@ namespace MedicalCenter.Pages
             ComboUser112.ItemsSource = CurrentData.db.User.ToList();
             ComboWorker.ItemsSource= CurrentData.db.Worker.ToList();
             ComboService.ItemsSource= CurrentData.db.Service.ToList();
-
-            InputData();
+            if (currentresult.id !=  0)
+            {
+                InputData();
+                btnEditResult.Visibility = Visibility.Visible;    
+            }
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -52,13 +55,6 @@ namespace MedicalCenter.Pages
             tbDateResult.Text = currentresult.date;
         }
 
-
-        private void btnEditResult_Click(object sender, RoutedEventArgs e)
-        {
-            InputData();
-               // btnEditSecodnResult.Visibility = Visibility.Visible;
-        }
-
         private void btnEditSecodnResult_Click(object sender, RoutedEventArgs e)
         {
             if (GetData())
@@ -67,7 +63,6 @@ namespace MedicalCenter.Pages
                 SaveChang();
                 MessageBox.Show("Запись успешно добавлена");
                 btnEditResult.Visibility = Visibility.Visible;
-                btnEditSecodnResult.Visibility = Visibility.Hidden;
             }
         }
 
@@ -98,6 +93,17 @@ namespace MedicalCenter.Pages
                 CurrentData.db.Result.Add(currentresult);
                 SaveChang();
                 MessageBox.Show("Запись успешно добавлена");
+                Manager.frame.Navigate(new Page_Result());
+            }
+        }
+
+        private void btnEditResult_Click(object sender, RoutedEventArgs e)
+        {
+            if (GetData())
+            {
+                CurrentData.db.Result.AddOrUpdate(currentresult);
+                SaveChang();
+                MessageBox.Show("Запись успешно отредактирована");
                 Manager.frame.Navigate(new Page_Result());
             }
         }
