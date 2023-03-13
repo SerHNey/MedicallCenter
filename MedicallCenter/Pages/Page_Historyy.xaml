@@ -30,16 +30,17 @@
                 <DataGridTextColumn Header="Номер входа" Binding="{Binding id}" Width="*">
                     <DataGridTextColumn.HeaderStyle>
                         <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Background" Value="#0D0D0D"/>
+                            <Setter Property="BorderBrush" Value="White"/>
+                            <Setter Property="BorderThickness" Value="2"/>
                             <Setter Property="Foreground" Value="Black"/>
-                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="DataGridColumnHeader">
                                         <Border x:Name="border"
                               BorderBrush="#045C70"
-                              BorderThickness="2"
-                              Background="White"
-                              CornerRadius="5 0 0 0" Padding="5,0,5,5">
+                              BorderThickness="0 2 2 2"
+                              Background="White">
                                             <ContentPresenter HorizontalAlignment="Center"/>
                                         </Border>
                                     </ControlTemplate>
@@ -48,19 +49,20 @@
                         </Style>
                     </DataGridTextColumn.HeaderStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="Дата входа" Binding="{Binding data}" Width="*">
+                <DataGridTextColumn Header="Дата входа" Binding="{Binding date}" Width="*">
                     <DataGridTextColumn.HeaderStyle>
                         <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Background" Value="#0D0D0D"/>
+                            <Setter Property="BorderBrush" Value="White"/>
+                            <Setter Property="BorderThickness" Value="2"/>
                             <Setter Property="Foreground" Value="Black"/>
-                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="DataGridColumnHeader">
                                         <Border x:Name="border"
                               BorderBrush="#045C70"
-                              BorderThickness="2"
-                              Background="White"
-                              CornerRadius="5 0 0 0" Padding="5,0,5,5">
+                              BorderThickness="0 2 2 2"
+                              Background="White">
                                             <ContentPresenter HorizontalAlignment="Center"/>
                                         </Border>
                                     </ControlTemplate>
@@ -72,16 +74,17 @@
                 <DataGridTextColumn Header="Как зовут" Binding="{Binding name}" Width="*">
                     <DataGridTextColumn.HeaderStyle>
                         <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Background" Value="#0D0D0D"/>
+                            <Setter Property="BorderBrush" Value="White"/>
+                            <Setter Property="BorderThickness" Value="2"/>
                             <Setter Property="Foreground" Value="Black"/>
-                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="DataGridColumnHeader">
                                         <Border x:Name="border"
                               BorderBrush="#045C70"
-                              BorderThickness="2"
-                              Background="White"
-                              CornerRadius="5 0 0 0" Padding="5,0,5,5">
+                              BorderThickness="0 2 2 2"
+                              Background="White">
                                             <ContentPresenter HorizontalAlignment="Center"/>
                                         </Border>
                                     </ControlTemplate>
@@ -93,16 +96,17 @@
                 <DataGridTextColumn Header="Логин" Binding="{Binding login}" Width="*">
                     <DataGridTextColumn.HeaderStyle>
                         <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Background" Value="#0D0D0D"/>
+                            <Setter Property="BorderBrush" Value="White"/>
+                            <Setter Property="BorderThickness" Value="2"/>
                             <Setter Property="Foreground" Value="Black"/>
-                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="DataGridColumnHeader">
                                         <Border x:Name="border"
                               BorderBrush="#045C70"
-                              BorderThickness="2"
-                              Background="White"
-                              CornerRadius="5 0 0 0" Padding="5,0,5,5">
+                              BorderThickness="0 2 2 2"
+                              Background="White">
                                             <ContentPresenter HorizontalAlignment="Center"/>
                                         </Border>
                                     </ControlTemplate>

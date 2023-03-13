@@ -80,6 +80,7 @@ namespace MedicalCenter.Pages
             if (search.Text != "" && DataGridWorkers != null)
             {
                 workers = workers.Where(n=>n.name.ToLower().Contains(search.Text.ToLower())).ToList();
+
                 DisplayDataInGrid();
             }
             else
