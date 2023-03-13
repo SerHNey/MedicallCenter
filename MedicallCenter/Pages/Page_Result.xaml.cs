@@ -86,15 +86,14 @@ namespace MedicalCenter.Pages
             if (search.Text != "" && DataGridResult != null)
             {
                 results = results.Where(n => n.User.name.ToLower().Contains(search.Text.ToLower())).ToList();
-                DataGridResult.ItemsSource = results;
-                maxpage = results.Count / pageSize;
+                DisplayDataInGrid();
             }
             else
             {
                 if (DataGridResult != null)
                 {
                     results = CurrentData.results;
-                    maxpage = results.Count / pageSize;
+                    DisplayDataInGrid();
                 }
 
             }

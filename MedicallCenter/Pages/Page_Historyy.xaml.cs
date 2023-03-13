@@ -73,15 +73,14 @@ namespace MedicallCenter.Pages
             if (search.Text != "" && DataGridHistory != null)
             {
                 services = services.Where(n => n.name.ToLower().Contains(search.Text.ToLower())).ToList();
-                DataGridHistory.ItemsSource = services;
-                maxpage = services.Count / pageSize;
+                DisplayDataInGrid();
             }
             else
             {
                 if (DataGridHistory != null)
                 {
                     services = CurrentData.historyHots;
-                    maxpage = services.Count / pageSize;
+                    DisplayDataInGrid();
                 }
 
             }
