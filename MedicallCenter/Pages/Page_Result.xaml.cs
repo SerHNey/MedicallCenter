@@ -30,10 +30,10 @@ namespace MedicalCenter.Pages
         private int pageSize = 20;
         List<Result> results = new List<Result>();
 
-        public Page_Result(Worker worker)
+        public Page_Result()
         {
             InitializeComponent();
-            if (worker.Type1.id != 1)
+            if (CurrentData.worker.Type1.id != 1)
             {
                 bntAddResult.Visibility = Visibility.Hidden;
                 bntDeleteResult.Visibility = Visibility.Hidden;

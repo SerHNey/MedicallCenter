@@ -29,10 +29,10 @@ namespace MedicalCenter.Pages
         private int pageSize = 20;
         List<Service> services = new List<Service>();
 
-        public Page_Servicee(Worker worker)
+        public Page_Servicee()
         {
             InitializeComponent();
-            if (worker.Type1.id != 1)
+            if (CurrentData.worker.Type1.id != 1)
             {
                 btnDeleteService.Visibility = Visibility.Hidden;
                 btnAddeditService.Visibility = Visibility.Hidden;
@@ -73,15 +73,20 @@ namespace MedicalCenter.Pages
         private void search_GotFocus(object sender, RoutedEventArgs e)
         {
             if (search.Text == "Поиск")
-                search.Text = "";
+                search.Text = "";   
             else if (search.Text == "")
                 search.Text = "Поиск";
         }
         private void TBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (search.Text != "" && DataGridService != null)
+            if (search.Text != "Поиск" && search.Text != "" && DataGridService != null)
             {
-                services = services.Where(n => n.service1.ToLower().Contains(search.Text.ToLower())).ToList();
+                string s_text = search.Text.ToLower();
+                services = CurrentData.services;
+                var s1 = services.Where(n => n.service1.ToLower().Contains(s_text)).ToList();
+                var s2 = services.Where(n => n.kod_service.ToString().ToLower().Contains(s_text)).ToList();
+                var s3 = services.Where(n => n.price.ToString().ToLower().Contains(s_text)).ToList();
+                services = s1.Concat(s3.Concat(s2)).ToList();
                 DisplayDataInGrid();
 
 

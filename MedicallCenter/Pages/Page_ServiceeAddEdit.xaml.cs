@@ -37,7 +37,7 @@ namespace MedicalCenter.Pages
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
-            Manager.frame.Navigate(new Page_Servicee(CurrentData.worker));
+            Manager.frame.Navigate(new Page_Servicee());
         }
 
         private void dntAddService_Click(object sender, RoutedEventArgs e)
@@ -46,7 +46,7 @@ namespace MedicalCenter.Pages
             {
                 CurrentData.db.Service.Add(currentServis);
                 CurrentData.db.SaveChanges();
-                Manager.frame.Navigate(new Page_Servicee(CurrentData.worker));
+                Manager.frame.Navigate(new Page_Servicee());
                 MessageBox.Show("Запись успешно добавлена");
             }
         }

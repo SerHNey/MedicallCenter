@@ -30,11 +30,11 @@ namespace MedicalCenter.Pages
         private int pageSize = 20;
         List<Worker> workers = new List<Worker>();
 
-        public Page_Workers(Worker worker)
+        public Page_Workers()
         {
             InitializeComponent();
 
-            if (worker.Type1.id != 1)
+            if (CurrentData.worker.Type1.id != 1)
             {
                 btn_deleteWorkers.Visibility = Visibility.Hidden;
                 btn_addeditWorkers.Visibility = Visibility.Hidden;
