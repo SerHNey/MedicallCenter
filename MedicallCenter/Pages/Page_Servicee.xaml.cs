@@ -2,19 +2,15 @@
 using MedicallCenter.Clasees;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity.Migrations;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using ZXing;
+using ZXing.Common;
 
 namespace MedicalCenter.Pages
 {
@@ -28,6 +24,7 @@ namespace MedicalCenter.Pages
         private int maxpage = 0;
         private int pageSize = 20;
         List<Service> services = new List<Service>();
+        List<DataGridRow> rows = new List<DataGridRow>();
 
         public Page_Servicee()
         {
@@ -39,7 +36,6 @@ namespace MedicalCenter.Pages
             }
 
             services = CurrentData.db.Service.ToList();
-            maxpage = services.Count / pageSize;
             DisplayDataInGrid();
         }
 
@@ -49,6 +45,7 @@ namespace MedicalCenter.Pages
         }
         private void DisplayDataInGrid()
         {
+            maxpage = services.Count / pageSize;
             var currentPageData = services.Skip(pageNumber * pageSize).Take(pageSize); // отображаем только данные для текущей страницы
             DataGridService.ItemsSource = currentPageData; // отображаем данные в DataGrid
         }
@@ -73,7 +70,7 @@ namespace MedicalCenter.Pages
         private void search_GotFocus(object sender, RoutedEventArgs e)
         {
             if (search.Text == "Поиск")
-                search.Text = "";   
+                search.Text = "";
             else if (search.Text == "")
                 search.Text = "Поиск";
         }
@@ -135,6 +132,46 @@ namespace MedicalCenter.Pages
         private void btn_AddEditService_Click(object sender, RoutedEventArgs e)
         {
             Manager.frame.Navigate(new Page_ServiceeAddEdit(currentServis));
+        }
+
+        private void DataGridService_LoadingRow(object sender, DataGridRowEventArgs e)
+        {
+            rows.Add(e.Row);
+        }
+
+        private void DataGridService_Loaded(object sender, RoutedEventArgs e)
+        {
+            foreach (var row in rows)
+            {
+                var item = row.Item as Service;
+                if (item != null)
+                {
+                    var writer = new BarcodeWriter
+                    {
+                        Format = BarcodeFormat.QR_CODE,
+                        Options = new EncodingOptions
+                        {
+                            Height = 100,
+                            Width = 200
+                        }
+                    };
+                    var result = writer.Write(item.service1);
+                    System.Drawing.Bitmap barcodeBitmap = null;
+                    using (var stream = new MemoryStream())
+                    {
+                        result.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
+                        barcodeBitmap = new System.Drawing.Bitmap(stream);
+                        stream.Position = 0;
+                        var bitmapImage = new BitmapImage();
+                        bitmapImage.BeginInit();
+                        bitmapImage.StreamSource = stream;
+                        bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                        bitmapImage.EndInit();
+                        var image = (Image)row.FindName("Image");
+                        image.Source = bitmapImage;
+                    }
+                }
+            }
         }
     }
 }

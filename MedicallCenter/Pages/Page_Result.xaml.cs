@@ -104,8 +104,9 @@ namespace MedicalCenter.Pages
             if (CurrentData.worker.Type1.id == 1)
             {
                 Result result = DataGridResult.SelectedValue as Result;
+
                 Manager.frame.Navigate(new Page_ResultAddEdit(result));
-            }
+            }          
         }
 
         private void btnDeleteResult_Click(object sender, RoutedEventArgs e)
