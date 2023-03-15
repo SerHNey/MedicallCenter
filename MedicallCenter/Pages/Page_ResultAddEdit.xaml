@@ -36,7 +36,7 @@
             <StackPanel Grid.Column="2" Orientation="Vertical" Margin="10 0 10 0">
                 <TextBlock Text="Дата" 
                            FontSize="24"/>
-                <TextBox x:Name="tbDateResult" FontSize="22"/>
+                <DatePicker x:Name="tbDateResult" FontSize="22"/>
             </StackPanel>
 
             <StackPanel Grid.Column="3" Orientation="Vertical" Margin="10 0 10 0">
