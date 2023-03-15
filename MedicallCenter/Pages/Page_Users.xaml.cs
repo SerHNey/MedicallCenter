@@ -38,7 +38,7 @@ namespace MedicalCenter.Pages
                 btn_AddEditUser.Visibility = Visibility.Hidden;
             }
 
-            users = CurrentData.users;
+            users = CurrentData.db.User.ToList();
             maxpage = users.Count / pageSize;
             DisplayDataInGrid();
         }

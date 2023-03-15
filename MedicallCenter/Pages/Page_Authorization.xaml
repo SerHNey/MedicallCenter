@@ -28,6 +28,7 @@
                 <CheckBox Name="cbShowPassword" VerticalAlignment="Center" HorizontalAlignment="Center" Width="15px" Height="15px" Margin="5px" Click="cbShowPassword_Click"/>
             </WrapPanel>
             <Button x:Name="bLogin" Content="Вход" Height="32px" FontSize="18px" BorderBrush="#FFABADB3" Background="White" Click="bLogin_Click"/>
+            <Button x:Name="bVod" Content="Войти без аккаунта" Height="32px" FontSize="18px" BorderBrush="#FFABADB3" Background="White" Click="bVod_Click" Margin="0 40 0 0"/>
         </StackPanel>
     </Grid>
 </Page>

@@ -105,5 +105,16 @@ namespace MedicalCenter.Pages
             bLogin.IsEnabled = true;
             captchaWindow.IsPassedCaptcha = false;
         }
+
+        private void bVod_Click(object sender, RoutedEventArgs e)
+        {
+            workers = CurrentData.db.Worker.ToList();
+            Worker worker = workers[0];
+            CurrentData.worker = worker;
+            CurrentData.worker.name = "Неизвестный";
+            Manager.StartTimer();
+            Manager.frame.Navigate(new Page_Home(worker));
+
+        }
     }
 }
