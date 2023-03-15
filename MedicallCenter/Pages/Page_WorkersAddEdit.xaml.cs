@@ -75,20 +75,20 @@ namespace MedicalCenter.Pages
         private bool GetData()
         {
             StringBuilder stringBuilder = new StringBuilder();
-            //if (tbNameWorker.Text.Length < 0)
-            //    stringBuilder.Append("Поле имя: пусто\n");
-            //if (tbLoginWorker.Text.Length < 0)
-            //    stringBuilder.Append("Поле логин: пусто\n");
-            //if (tbPasswordWorker.Text.Length < 0)
-            //    stringBuilder.Append("Поле пароль: пусто\n");
-            //if (tbIpWorker.Text.Length < 0)
-            //    stringBuilder.Append("Поле ip: пусто\n");
-            //if (tbLasneterWorker.Text.Length < 0)
-            //    stringBuilder.Append("Поле время: пусто\n");
-            //if (ComboService.SelectedItem == null)
-            //    stringBuilder.Append("Поле услуги: пусто\n");
-            //if (ComboDolgnost.SelectedItem == null)
-            //    stringBuilder.Append("Поле должность: пусто\n");
+            if (tbNameWorker.Text == "")
+                stringBuilder.Append("Заполните поле имя: пусто\n");
+            if (tbLoginWorker.Text == "")
+                stringBuilder.Append("Заполните поле логин: пусто\n");
+            if (tbPasswordWorker.Text == "")
+                stringBuilder.Append("Заполните поле пароль: пусто\n");
+            if (tbIpWorker.Text == "")
+                stringBuilder.Append("Заполните поле ip: пусто\n");
+            if (tbLasneterWorker.Text == "")
+                stringBuilder.Append("Заполните поле время: пусто\n");
+            if (ComboService.SelectedItem  == null)
+                stringBuilder.Append("Заполните поле услуги: пусто\n");
+            if (ComboDolgnost.SelectedItem  == null)
+                stringBuilder.Append("Заполните поле должность: пусто\n");
             if (stringBuilder.ToString() == "")
             {
                 curerentworker.name = tbNameWorker.Text;
@@ -100,6 +100,7 @@ namespace MedicalCenter.Pages
                 curerentworker.type = CurrentData.db.Type.ToList().Where(x => x.role == ComboDolgnost.Text).FirstOrDefault().id;
                 return true;
             }
+            MessageBox.Show(stringBuilder.ToString());
             return false;
         }
 

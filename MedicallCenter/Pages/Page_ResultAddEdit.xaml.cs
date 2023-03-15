@@ -70,6 +70,8 @@ namespace MedicalCenter.Pages
         {
             StringBuilder stringBuilder = new StringBuilder();
 
+
+
             if (stringBuilder.ToString() == "")
             {
                 currentresult.id_user = CurrentData.users.FirstOrDefault(x => x.name == ComboUser112.Text).id;

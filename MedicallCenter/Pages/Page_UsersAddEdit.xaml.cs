@@ -111,6 +111,8 @@ namespace MedicalCenter.Pages
                 currentuser.pol = ComboPolUser.Text;
                 currentuser.age = Convert.ToInt16(tbAgeUser.Text);
                 return true;
+
+
             }catch(Exception ex)
             {
                 return false;

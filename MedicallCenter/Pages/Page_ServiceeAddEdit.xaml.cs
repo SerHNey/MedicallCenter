@@ -54,9 +54,12 @@ namespace MedicalCenter.Pages
 
         private bool GetData()
         {
+            StringBuilder stringBuilder = new StringBuilder();
             if (tbNameService.Text != "")
-                if (tbPriceService.Text != "")
-                {
+                stringBuilder.Append("Заполните поле услуга: пусто\n");
+            if (tbPriceService.Text != "")
+                stringBuilder.Append("Заполните поле цена: пусто\n");
+            {
                     currentServis.service1 = tbNameService.Text;
                     currentServis.kod_service = Convert.ToInt16(tbKodService.Text);
                     try
@@ -71,6 +74,7 @@ namespace MedicalCenter.Pages
                         return false;
                     }
                 }
+            MessageBox.Show(stringBuilder.ToString());
             return false;
         }
         // Закидывает старые данные в поля для изменения, выбранного элемента
