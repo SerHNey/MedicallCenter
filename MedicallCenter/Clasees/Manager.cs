@@ -16,27 +16,33 @@ namespace MedicalCenter
     class Manager
     {
         public static Frame frame { get; set; }
-        private static Thread thread = new Thread(TimerCallback);
+
+        static bool israbot = true;
+
 
         public static void StartTimer()
         {
+            Thread thread = new Thread(TimerCallback);
+            israbot = true;
             thread.Start();
         }
 
         public static void KillTimer()
         {
-            thread.Abort();
+            israbot = false;
         }
 
-        static void TimerCallback()
+       static void TimerCallback()
         {
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
-            Timer timer = new Timer((state) => {
-                if(stopwatch.Elapsed.Minutes == 45)
+            Timer timer = new Timer((state) =>
+            {
+                if (stopwatch.Elapsed.Minutes == 45)
                     MessageBox.Show("Время до завершения сессии: " + 15 + " минут");
             }, null, TimeSpan.Zero, TimeSpan.FromMinutes(15));
-            while (stopwatch.Elapsed.Hours<1) { }
+            while (stopwatch.Elapsed.Hours < 1 && israbot) { }
+            if (!israbot) return;
             CurrentData.worker = null;
             Application.Current.Dispatcher.Invoke(() =>
             {

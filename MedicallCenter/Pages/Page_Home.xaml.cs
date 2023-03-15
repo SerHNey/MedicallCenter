@@ -78,6 +78,7 @@ namespace MedicalCenter.Pages
         {
             if (MessageBox.Show("Вы точно хотите выйти?", "Внимание", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
+                Manager.KillTimer();
                 Manager.frame.Navigate(new Page_Authorization());
             }
 

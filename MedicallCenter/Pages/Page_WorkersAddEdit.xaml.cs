@@ -30,7 +30,6 @@ namespace MedicalCenter.Pages
         public Page_WorkersAddEdit(Worker worker)
         {
             InitializeComponent();
-            ComboService.ItemsSource = CurrentData.db.Service.ToList();
             ComboDolgnost.ItemsSource = CurrentData.db.Type.ToList();
             curerentworker = worker;
             if (curerentworker.id != 0)
@@ -58,6 +57,7 @@ namespace MedicalCenter.Pages
             {
                 cur_services.Add(CurrentData.services.FirstOrDefault(n => n.kod_service == (int)jobj["code"]));
             }
+            ComboService.ItemsSource = cur_services;
             ComboDolgnost.Text = curerentworker.Type1.role;
         }
 
@@ -96,12 +96,24 @@ namespace MedicalCenter.Pages
                 curerentworker.password = tbPasswordWorker.Text;
                 curerentworker.ip = tbIpWorker.Text;
                 curerentworker.lastenter = tbLasneterWorker.Text;
-                curerentworker.services = ComboService.SelectedValue.ToString();
+                curerentworker.services = GetServises(ComboService.ItemsSource as List<Service>);
                 curerentworker.type = CurrentData.db.Type.ToList().Where(x => x.role == ComboDolgnost.Text).FirstOrDefault().id;
                 return true;
             }
             MessageBox.Show(stringBuilder.ToString());
             return false;
+        }
+
+        string GetServises(List<Service> list)
+        {
+            JArray myArray = new JArray();
+            foreach (var item in list)
+            {
+                JObject obj = new JObject();
+                obj.Add("code", item.kod_service);
+                myArray.Add(obj);
+            }
+            return myArray.ToString();
         }
 
         private void btnEditWorker_Click(object sender, RoutedEventArgs e)
