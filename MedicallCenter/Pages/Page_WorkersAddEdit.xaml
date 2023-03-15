@@ -1,4 +1,4 @@
-﻿<Page x:Class="MedicalCenter.Pages.Page_WorkersAddEdit "
+﻿<Page x:Class="MedicalCenter.Pages.Page_WorkersAddEdit"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -34,7 +34,7 @@
                 <TextBox x:Name="tbIpWorker" FontSize="22" Style="{DynamicResource TextBoxStyle2}"/>
                 <TextBlock Text="Время" 
                            FontSize="24"/>
-                <TextBox x:Name="tbLasneterWorker" FontSize="22" Style="{DynamicResource TextBoxStyle2}"/>
+                <DatePicker x:Name="tbLasneterWorker" FontSize="22" />
             </StackPanel>
             <StackPanel Grid.Column="2" Orientation="Vertical" Margin="10 0 10 0">
                 <TextBlock Text="Услуги" 
@@ -45,12 +45,10 @@
                 <ComboBox x:Name="ComboDolgnost"  IsEditable="True" IsReadOnly="False" DisplayMemberPath="role" Template="{DynamicResource ComboBoxTemplate}"/>
             </StackPanel>
             <StackPanel Grid.Column="3" Orientation="Vertical" Margin="10 0 10 0">
-                <Button x:Name="btnAddWorker" Content="Добавить" 
-                        FontSize="20" Margin="0 10 0 0"/>
                 <Grid>
-                    <Button x:Name="btnEditWorker" Content="Редактировать"
+                    <Button x:Name="btnAddWorke" Content="Добавить" Click="btnAddWorker_Click"
                         FontSize="20" Margin="0 10 0 0"/>
-                    <Button x:Name="btnEditSecondWorker" Content="Сохранить" Visibility="Hidden" 
+                    <Button x:Name="btnEditWorker" Content="Редактировать" Visibility="Hidden" Click="btnEditWorker_Click"
                         FontSize="20" Margin="0 10 0 0"/>
                 </Grid>
                 <Button x:Name="btnBack" Content="Вернуться" Click="btnBack_Click"
