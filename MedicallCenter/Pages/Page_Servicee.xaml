@@ -19,7 +19,7 @@
         <Button Name="btnDeleteService" Content="Удалить" HorizontalAlignment="Right" Margin="10" Padding="10 0" Click="bntDeleteService_Click" />
         <Button Name="btnAddeditService" Content="Добавить" HorizontalAlignment="Right" Margin="10 10 90 10" Padding="10 0" Click="btn_AddEditService_Click" />
         <TextBox x:Name="search" Text="Поиск" Style="{DynamicResource TextBoxStyle2}" Margin="2in 0.1in" Padding="10 0" GotFocus="search_GotFocus" LostFocus="search_GotFocus" TextChanged="TBoxSearch_TextChanged"/>
-        <DataGrid x:Name="DataGridService" Loaded="DataGridService_Loaded" LoadingRow="DataGridService_LoadingRow" Grid.Row="1" AutoGenerateColumns="False" HorizontalGridLinesBrush="#045C70" VerticalGridLinesBrush="#045C70" IsReadOnly="True" Style="{DynamicResource DataGridStyle1}">
+        <DataGrid x:Name="DataGridService" Grid.Row="1" AutoGenerateColumns="False" HorizontalGridLinesBrush="#045C70" VerticalGridLinesBrush="#045C70" IsReadOnly="True" Style="{DynamicResource DataGridStyle1}">
             <FrameworkElement.Resources>
                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="LightGray"/>
                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="#045C70"/>
@@ -34,7 +34,8 @@
                 <DataGridTemplateColumn Header="Штрих-код">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Image x:Name="Image" Height="100" Width="200"/>
+                            <Image Source="{Binding image}" Height="100" Width="200"/>
+
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                     <DataGridTemplateColumn.HeaderStyle>

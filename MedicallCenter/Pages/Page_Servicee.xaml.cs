@@ -23,7 +23,8 @@ namespace MedicalCenter.Pages
         private int pageNumber = 0;
         private int maxpage = 0;
         private int pageSize = 20;
-        List<Service> services = new List<Service>();
+        List<Serv> services = new List<Serv>();
+        List<Serv> cur_services = new List<Serv>();
         List<DataGridRow> rows = new List<DataGridRow>();
 
         public Page_Servicee()
@@ -35,8 +36,29 @@ namespace MedicalCenter.Pages
                 btnAddeditService.Visibility = Visibility.Hidden;
             }
 
-            services = CurrentData.db.Service.ToList();
+            foreach (var item in CurrentData.services)
+            {
+                services.Add(new Serv(item));
+            }
+            cur_services = new List<Serv>(services);
             DisplayDataInGrid();
+        }
+
+        class Serv
+        {
+            public BitmapImage image { get; set; }
+            public int id { get; set; }
+            public string service1 { get; set; }
+            public Nullable<double> price { get; set; }
+            public Nullable<int> kod_service { get; set; }
+
+            public Serv(Service service)
+            {
+                this.id = service.id;
+                this.service1 = service.service1;
+                this.price = service.price;
+                this.kod_service = service.kod_service;
+            }
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -46,7 +68,8 @@ namespace MedicalCenter.Pages
         private void DisplayDataInGrid()
         {
             maxpage = services.Count / pageSize;
-            var currentPageData = services.Skip(pageNumber * pageSize).Take(pageSize); // отображаем только данные для текущей страницы
+            var currentPageData = services.Skip(pageNumber * pageSize).Take(pageSize);// отображаем только данные для текущей страницы
+            SetImage(currentPageData);
             DataGridService.ItemsSource = currentPageData; // отображаем данные в DataGrid
         }
 
@@ -79,7 +102,7 @@ namespace MedicalCenter.Pages
             if (search.Text != "Поиск" && search.Text != "" && DataGridService != null)
             {
                 string s_text = search.Text.ToLower();
-                services = CurrentData.services;
+                services = cur_services;
                 var s1 = services.Where(n => n.service1.ToLower().Contains(s_text)).ToList();
                 var s2 = services.Where(n => n.kod_service.ToString().ToLower().Contains(s_text)).ToList();
                 var s3 = services.Where(n => n.price.ToString().ToLower().Contains(s_text)).ToList();
@@ -92,7 +115,7 @@ namespace MedicalCenter.Pages
             {
                 if (DataGridService != null)
                 {
-                    services = CurrentData.services;
+                    services = cur_services;
                     DisplayDataInGrid();
                 }
 
@@ -134,44 +157,35 @@ namespace MedicalCenter.Pages
             Manager.frame.Navigate(new Page_ServiceeAddEdit(currentServis));
         }
 
-        private void DataGridService_LoadingRow(object sender, DataGridRowEventArgs e)
+        private void SetImage(IEnumerable<Serv> list)
         {
-            rows.Add(e.Row);
-        }
-
-        private void DataGridService_Loaded(object sender, RoutedEventArgs e)
-        {
-            foreach (var row in rows)
+            foreach (var item in list)
             {
-                var item = row.Item as Service;
-                if (item != null)
+                var writer = new BarcodeWriter
                 {
-                    var writer = new BarcodeWriter
+                    Format = BarcodeFormat.CODE_128,
+                    Options = new EncodingOptions
                     {
-                        Format = BarcodeFormat.QR_CODE,
-                        Options = new EncodingOptions
-                        {
-                            Height = 100,
-                            Width = 200
-                        }
-                    };
-                    var result = writer.Write(item.service1);
-                    System.Drawing.Bitmap barcodeBitmap = null;
-                    using (var stream = new MemoryStream())
-                    {
-                        result.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
-                        barcodeBitmap = new System.Drawing.Bitmap(stream);
-                        stream.Position = 0;
-                        var bitmapImage = new BitmapImage();
-                        bitmapImage.BeginInit();
-                        bitmapImage.StreamSource = stream;
-                        bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
-                        bitmapImage.EndInit();
-                        var image = (Image)row.FindName("Image");
-                        image.Source = bitmapImage;
+                        Height = 100,
+                        Width = 200
                     }
+                };
+                var result = writer.Write(item.kod_service.ToString());
+                System.Drawing.Bitmap barcodeBitmap = null;
+                using (var stream = new MemoryStream())
+                {
+                    result.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
+                    barcodeBitmap = new System.Drawing.Bitmap(stream);
+                    stream.Position = 0;
+                    var bitmapImage = new BitmapImage();
+                    bitmapImage.BeginInit();
+                    bitmapImage.StreamSource = stream;
+                    bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                    bitmapImage.EndInit();
+                    item.image = bitmapImage;
                 }
             }
         }
     }
 }
+
