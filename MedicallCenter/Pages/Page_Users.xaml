@@ -15,8 +15,10 @@
             <RowDefinition Height="0.2*" MaxHeight="0.8in"/>
         </Grid.RowDefinitions>
         <Button Name="back" Content="На главную" HorizontalAlignment="Left" Margin="10" Padding="10 0" Click="btnBack_Click"/>
-        <Button Name="btn_DeleteUser" Content="Удалить" HorizontalAlignment="Right" Margin="10" Padding="10 0" Click="btnDeleteUser_Click"/>
-        <Button Name="btn_AddEditUser" Content="Добавить" HorizontalAlignment="Right" Margin="10 10 90 10" Padding="10 0" Click="btnAddEditUser_Click" />
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Name="btn_DeleteUser" Content="Удалить" Padding="5" Margin="10" Click="btnDeleteUser_Click"/>
+            <Button Name="btn_AddEditUser" Content="Добавить" Padding="5" Margin="10" Click="btnAddEditUser_Click"/>
+        </StackPanel>
         <TextBox x:Name="search" Text="Поиск" Style="{DynamicResource TextBoxStyle2}" Margin="2in 0.1in" Padding="10 0" GotFocus="search_GotFocus" LostFocus="search_GotFocus" TextChanged="TBoxSearch_TextChanged"/>
         <DataGrid x:Name="DataGridUser" Grid.Row="1" AutoGenerateColumns="False" HorizontalGridLinesBrush="#045C70" VerticalGridLinesBrush="#045C70" IsReadOnly="True" Style="{DynamicResource DataGridStyle1}">
             <FrameworkElement.Resources>

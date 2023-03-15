@@ -31,7 +31,10 @@
                 <ComboBox x:Name="ComboService" FontSize="22" DisplayMemberPath="service1"/>
                 <TextBlock Text="Результат" 
                            FontSize="24"/>
-                <TextBox x:Name="tbResultResult" FontSize="22"/>
+                <ComboBox x:Name="ComboResultResult" FontSize="22" >
+                    <ComboBoxItem Name="positiv" Content="+"/>
+                    <ComboBoxItem Name="negativ" Content="-"/>
+                </ComboBox>
             </StackPanel>
             <StackPanel Grid.Column="2" Orientation="Vertical" Margin="10 0 10 0">
                 <TextBlock Text="Дата" 
