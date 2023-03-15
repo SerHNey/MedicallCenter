@@ -49,6 +49,7 @@ namespace MedicalCenter.Pages
                 CurrentData.db.User.AddOrUpdate(currentuser);
                 CurrentData.db.SaveChanges();
                 MessageBox.Show("Запись успешно добавлена");
+                Manager.frame.Navigate(new Page_Users());
             }
 
         }
@@ -57,7 +58,7 @@ namespace MedicalCenter.Pages
             tbNameUser.Text = currentuser.name;
             tbLoginUser.Text = currentuser.login;
             tbPasswordUser.Text = currentuser.password;
-            tbPolUser.Text = currentuser.pol;
+            ComboPolUser.Text = currentuser.pol;
             tbAgeUser.Text = Convert.ToString(currentuser.age);
         }
 
@@ -69,6 +70,7 @@ namespace MedicalCenter.Pages
                 CurrentData.db.User.AddOrUpdate(currentuser);
                 CurrentData.db.SaveChanges();
                 MessageBox.Show("Запись успешно отредактирована");
+                Manager.frame.Navigate(new Page_Users());
             }
         }
         private bool GetData()
@@ -91,10 +93,10 @@ namespace MedicalCenter.Pages
                     stringBuilder.Append("Поле пароль: пусто\n");
                     tbPasswordUser.BorderBrush = new SolidColorBrush(Colors.Red);
                 }
-                if (tbPolUser.Text == "")
+                if (ComboPolUser.Text == "")
                 {
                     stringBuilder.Append("Поле пол: пусто\n");
-                    tbPolUser.BorderBrush = new SolidColorBrush(Colors.Red);
+                    ComboPolUser.BorderBrush = new SolidColorBrush(Colors.Red);
                 }
                 if (tbAgeUser.Text == "")
                 {
@@ -106,7 +108,7 @@ namespace MedicalCenter.Pages
                 currentuser.name = tbNameUser.Text;
                 currentuser.login = tbLoginUser.Text;
                 currentuser.password = tbPasswordUser.Text;
-                currentuser.pol = tbPolUser.Text;
+                currentuser.pol = ComboPolUser.Text;
                 currentuser.age = Convert.ToInt16(tbAgeUser.Text);
                 return true;
             }catch(Exception ex)

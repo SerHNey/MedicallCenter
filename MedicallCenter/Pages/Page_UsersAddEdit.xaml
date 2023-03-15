@@ -15,7 +15,7 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
+                <ColumnDefinition  />
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -32,10 +32,13 @@
                            FontSize="24"/>
                 <TextBox x:Name="tbPasswordUser" FontSize="22"/>
             </StackPanel>
-            <StackPanel Grid.Column="1" Orientation="Vertical" Margin="10 0 10 0">
+            <StackPanel Grid.Column="1" Orientation="Vertical" Margin="10 0 10 0" >
                 <TextBlock Text="Пол" 
                            FontSize="24"/>
-                <TextBox x:Name="tbPolUser" FontSize="22" ToolTip="М или Ж"/>
+                <ComboBox x:Name="ComboPolUser" FontSize="22">
+                    <ComboBoxItem Name="man" Content="М"/>
+                    <ComboBoxItem Name="woman" Content="Ж"/>
+                </ComboBox>
                 <TextBlock Text="Возраст" 
                            FontSize="24"/>
                 <TextBox x:Name="tbAgeUser" FontSize="22"/>
