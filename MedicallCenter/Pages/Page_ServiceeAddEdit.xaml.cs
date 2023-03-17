@@ -24,16 +24,22 @@ namespace MedicalCenter.Pages
     public partial class Page_ServiceeAddEdit : Page
     {
         private Service currentServis = new Service();
-        public Page_ServiceeAddEdit(Service service)
-        {
+         public Page_ServiceeAddEdit(int idServ)
+         {
             InitializeComponent();
-            currentServis = service;
-            if (currentServis.id != 0)
+
+
+            if (idServ != 0)
             {
+                currentServis = CurrentData.db.Service.Find(idServ);
                 OutInfoEditService();
                 btnEditService.Visibility = Visibility.Visible;
             }
-        }
+            else
+            {
+                currentServis.service1 = "1";
+            }
+         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
@@ -91,6 +97,7 @@ namespace MedicalCenter.Pages
             {
                 CurrentData.db.Service.AddOrUpdate(currentServis);
                 CurrentData.db.SaveChanges();
+                Manager.frame.Navigate(new Page_Servicee());
                 MessageBox.Show("Запись успешно изменена");
             }
         }
