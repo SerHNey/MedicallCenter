@@ -77,7 +77,7 @@ namespace MedicalCenter.Pages
             MessageBox.Show(stringBuilder.ToString());
             return false;
         }
-        // Закидывает старые данные в поля для изменения, выбранного элемента
+        // Закидывает старые данные в поля для изменения, выбранного элементаo
         private void OutInfoEditService()
         {
             tbKodService.Text = Convert.ToString(currentServis.kod_service);

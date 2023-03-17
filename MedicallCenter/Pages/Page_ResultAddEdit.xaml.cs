@@ -70,7 +70,19 @@ namespace MedicalCenter.Pages
         {
             StringBuilder stringBuilder = new StringBuilder();
 
+            if (ComboUser112.SelectedItem == null)
+                stringBuilder.Append("Заполните поле Пациент: пусто\n");
 
+            if (ComboWorker.SelectedItem == null)
+                stringBuilder.Append("Заполните поле Работник: пусто\n");
+
+            if(ComboService.SelectedItem == null)
+                stringBuilder.Append("Заполните поле Услуга: пусто\n");
+
+            if(ComboResultResult.Text == "")
+                stringBuilder.Append("Заполните поле Результат: пусто\n");
+            if (tbDateResult.Text == "")
+                stringBuilder.Append("Заполните поле Дата: пусто\n");
 
             if (stringBuilder.ToString() == "")
             {
@@ -81,6 +93,7 @@ namespace MedicalCenter.Pages
                 currentresult.date = tbDateResult.Text;
                 return true;
             }
+            MessageBox.Show(stringBuilder.ToString());
             return false;
         }
         private void SaveChang()
