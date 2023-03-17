@@ -261,6 +261,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Pages\print.png" />
+    <Resource Include="Resources\Image\print.png" />
     <Resource Include="Resources\Image\profile.png" />
     <Resource Include="arrow.png" />
     <Content Include="Model1.Context.tt">

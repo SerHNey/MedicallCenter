@@ -87,7 +87,7 @@ namespace MedicalCenter.Pages
             if (stringBuilder.ToString() == "")
             {
                 currentresult.id_user = CurrentData.users.FirstOrDefault(x => x.name == ComboUser112.Text).id;
-                currentresult.id_lab = CurrentData.workers.FirstOrDefault(x => x.name == ComboWorker.Text).id;
+                currentresult.id_lab = CurrentData.workers.FirstOrDefault(x => x.name == ComboWorker.Text).id;  
                 currentresult.id_service = CurrentData.services.FirstOrDefault(x => x.service1 == ComboService.Text).id;
                 currentresult.result1 = ComboResultResult.Text;
                 currentresult.date = tbDateResult.Text;
