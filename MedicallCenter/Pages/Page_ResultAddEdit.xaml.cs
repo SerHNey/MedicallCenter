@@ -125,11 +125,7 @@ namespace MedicalCenter.Pages
 
         private void btnPrint_Click(object sender, RoutedEventArgs e)
         {
-            PrintDialog printDialog = new PrintDialog();
-            if (printDialog.ShowDialog() == true)
-            {
-                printDialog.PrintVisual(tbDateResult, "Распечатываем элемент Canvas");
-            }
+
         }
     }
 }

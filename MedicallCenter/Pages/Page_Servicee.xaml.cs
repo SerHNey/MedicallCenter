@@ -140,7 +140,7 @@ namespace MedicalCenter.Pages
             if (CurrentData.worker.Type1.id == 1)
             {
                 Serv service = DataGridService.SelectedValue as Serv;
-                Manager.frame.Navigate(new Page_ServiceeAddEdit(service.id));
+                Manager.frame.Navigate(new Page_ServiceeAddEdit(service.id, service.image));
             }
         }
 
@@ -178,7 +178,7 @@ namespace MedicalCenter.Pages
 
         private void btn_AddEditService_Click(object sender, RoutedEventArgs e)
         {
-            Manager.frame.Navigate(new Page_ServiceeAddEdit(0));
+            Manager.frame.Navigate(new Page_ServiceeAddEdit(0, null));
         }
 
         private void SetImage(IEnumerable<Serv> list)

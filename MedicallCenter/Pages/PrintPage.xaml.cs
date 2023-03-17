@@ -20,9 +20,15 @@ namespace MedicallCenter.Pages
     /// </summary>
     public partial class PrintPage : Page
     {
-        public PrintPage()
+
+        public PrintPage(Service currentService, BitmapImage image)
         {
             InitializeComponent();
+
+            IdService.Text = currentService.id.ToString();
+            TitleService.Text = currentService.service1.ToString();
+            PriceService.Text = currentService.price.ToString();
+            ImageService.Source = image;
         }
     }
 }
