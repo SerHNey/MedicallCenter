@@ -31,12 +31,12 @@ namespace MedicalCenter.Pages
             currentresult = currentresult2;
 
             ComboUser112.ItemsSource = CurrentData.db.User.ToList();
-            ComboWorker.ItemsSource= CurrentData.db.Worker.ToList();
-            ComboService.ItemsSource= CurrentData.db.Service.ToList();
-            if (currentresult.id !=  0)
+            ComboWorker.ItemsSource = CurrentData.db.Worker.ToList();
+            ComboService.ItemsSource = CurrentData.db.Service.ToList();
+            if (currentresult.id != 0)
             {
                 InputData();
-                btnEditResult.Visibility = Visibility.Visible;    
+                btnEditResult.Visibility = Visibility.Visible;
             }
         }
 
@@ -45,7 +45,7 @@ namespace MedicalCenter.Pages
             Manager.frame.Navigate(new Page_Result());
         }
 
-       
+
         private void InputData()
         {
             ComboUser112.Text = currentresult.User.name;
@@ -76,10 +76,10 @@ namespace MedicalCenter.Pages
             if (ComboWorker.SelectedItem == null)
                 stringBuilder.Append("Заполните поле Работник: пусто\n");
 
-            if(ComboService.SelectedItem == null)
+            if (ComboService.SelectedItem == null)
                 stringBuilder.Append("Заполните поле Услуга: пусто\n");
 
-            if(ComboResultResult.Text == "")
+            if (ComboResultResult.Text == "")
                 stringBuilder.Append("Заполните поле Результат: пусто\n");
             if (tbDateResult.Text == "")
                 stringBuilder.Append("Заполните поле Дата: пусто\n");
@@ -103,7 +103,7 @@ namespace MedicalCenter.Pages
 
         private void bntAddResult_Click(object sender, RoutedEventArgs e)
         {
-            if (GetData()) 
+            if (GetData())
             {
                 CurrentData.db.Result.Add(currentresult);
                 SaveChang();
@@ -121,6 +121,11 @@ namespace MedicalCenter.Pages
                 MessageBox.Show("Запись успешно отредактирована");
                 Manager.frame.Navigate(new Page_Result());
             }
+        }
+
+        private void btnPrint_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
